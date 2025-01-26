@@ -1,0 +1,30 @@
+{* This is the welcome page, you can delete it *}
+{block content}
+
+
+<div class="container">
+    <h1>Court Reservations Overview</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reservation ID</th>
+                <th>User ID</th>
+                <th>Court</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $reservations as $reservation}
+                <tr>
+                    <td>{$reservation->id}</td>
+                    <td>{$reservation->user_id}</td>
+                    <td>Court {$reservation->court}</td>
+                    <td>{$reservation->date|date}</td>
+                    <td>{$reservation->time}:00</td>
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>

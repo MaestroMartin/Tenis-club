@@ -1,0 +1,10 @@
+/.htaccess
+/bin
+/composer.json
+/composer.lock
+/config
+/log
+/readme.md
+/temp
+/vendor
+/www

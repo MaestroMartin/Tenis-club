@@ -1,0 +1,24 @@
+<!-- Layout for ReservationPresenter: Reservation List -->
+<div class="container">
+    <h1>Reservations</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Court</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $reservations as $reservation}
+                <tr>
+                    <td>{$reservation->court}</td>
+                    <td>{$reservation->date}</td>
+                    <td>{$reservation->time}:00</td>
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <h2>Make a Reservation</h2>
+    {control reservationForm}
+</div>
