@@ -1,56 +1,58 @@
 <?php
 
-declare(strict_types=1);
+namespace App\UI\Model;
 
-namespace App\Model;
-
-use Nette;
+use Nette\Security\SimpleIdentity;
+use App\UI\Model\UserFacade;
 use Nette\Security\Authenticator;
-use Nette\Security\Identity;
+use Nette\Security\IIdentity;
+use Nette\Security\Passwords;
 use Nette\Security\AuthenticationException;
 
 class MyAuthenticator implements Authenticator
 {
     private UserFacade $userFacade;
+    private RoleFacade $roleFacade;
+    private Passwords $passwords;
 
-    public function __construct(UserFacade $userFacade)
-    {
+    public function __construct(
+        UserFacade $userFacade,
+        RoleFacade $roleFacade,
+        Passwords $passwords
+    ) {
         $this->userFacade = $userFacade;
+        $this->roleFacade = $roleFacade;
+        $this->passwords = $passwords;
     }
 
-    /**
-     * Performs an authentication.
-     * @param string $username
-     * @param string $password
-     * @return Identity
-     * @throws AuthenticationException
-     */
-    public function authenticate(string $username, string $password): Identity
+    public function authenticate(string $user, string $password): IIdentity
     {
-        // Fetch user by username/email
-        $user = $this->userFacade->getByEmail($username);
-        if (!$user) {
-            throw new AuthenticationException('The email is incorrect.', self::IDENTITY_NOT_FOUND);
+        // Získání uživatele podle e-mailu
+        $row = $this->userFacade->getByEmail($user);
+
+        if (!$row) {
+            throw new AuthenticationException('User not found.');
         }
 
-        // Verify password
-        if (!$this->userFacade->passwords->verify($password, $user->password)) {
-            throw new AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
+        // Ověření hesla
+        if (!$this->passwords->verify($password, $row->password)) {
+            throw new AuthenticationException('Invalid password.');
         }
 
-        // Rehash password if needed
-        if ($this->userFacade->passwords->needsRehash($user->password)) {
-            $this->userFacade->changePassword($user->id, $password);
+        // Ověření, zda heslo nevyžaduje rehash
+        if ($this->passwords->needsRehash($row->password)) {
+            $newHash = $this->passwords->hash($password);
+            $this->userFacade->updatePassword($row->id, $newHash);
         }
 
-        // Return identity
-        return new Identity(
-            $user->id,
-            $user->role,
-            [
-                'username' => $user->username,
-                'email' => $user->email
-            ]
+        // Připravení dat identity
+        $userData = $row->toArray();
+        unset($userData['password']);
+
+        return new SimpleIdentity(
+            $row->id,
+            $this->roleFacade->findAllByUserIdAsEntity($row->id), // Role uživatele
+            $userData // Další data uživatele
         );
     }
 }

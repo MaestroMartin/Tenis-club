@@ -6,3 +6,10 @@ CREATE TABLE reservations (
     time TINYINT NOT NULL CHECK (time BETWEEN 8 AND 20),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+INSERT INTO reservations (user_id, court, date, time) VALUES
+(1, 1, '2025-01-26', 10),
+(2, 2, '2025-01-27', 12),
+(3, 1, '2025-01-27', 14),
+(2, 1, '2025-01-28', 16),
+(4, 2, '2025-01-28', 18);

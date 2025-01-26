@@ -4,7 +4,7 @@ namespace App\UI\User;
 
 use Nette;
 use App\Model\UserFacade;
-
+use App\UI\Model\AuthorizatorFactory;
 final class UserPresenter extends Nette\Application\UI\Presenter
 {
     private UserFacade $userFacade;
@@ -30,6 +30,26 @@ final class UserPresenter extends Nette\Application\UI\Presenter
 
         $this->template->user = $user;
     }
+
+    protected function startup(): void
+{
+    parent::startup();
+    $acl = AuthorizatorFactory::create();
+    $acl->addResource('reservation');
+
+    $roles = $this->user->getRoles();
+    $allowed = false;
+    foreach ($roles as $role) {
+        if ($acl->isAllowed($role, 'reservation', 'view')) {
+            $allowed = true;
+            break;
+        }
+    }
+    if (!$allowed) {
+        $this->flashMessage('Access denied.', 'error');
+        $this->redirect('Sign:in');
+    }
+}
 
     public function createComponentEditUserForm(): Nette\Application\UI\Form
     {

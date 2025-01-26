@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\UI\Home;
 
 use Nette;
-use App\UI\FrontModul\ReservationManager;
+use App\UI\FrontModul\Presenters\ReservationManager;
 
 
 final class HomePresenter extends Nette\Application\UI\Presenter
@@ -20,6 +20,12 @@ final class HomePresenter extends Nette\Application\UI\Presenter
     public function renderDefault(): void
     {
         $this->template->reservations = $this->reservationManager->getAllReservations();
+    }
+    protected function beforeRender(): void
+    {
+    parent::beforeRender();
+    dump(__DIR__ . '/../templates/@layout.latte'); // Kontrola cesty
+    $this->setLayout(__DIR__ . '/../templates/@layout.latte');
     }
 }
 

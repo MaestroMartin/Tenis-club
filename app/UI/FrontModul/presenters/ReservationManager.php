@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UI\FrontModul;
+namespace App\UI\FrontModul\Presenters;
 
 use Nette\Database\Explorer;
 use Nette\SmartObject;

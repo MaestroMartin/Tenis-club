@@ -20,5 +20,9 @@
         </tbody>
     </table>
     <h2>Make a Reservation</h2>
-    {control reservationForm}
+    {if $user->isallowed('Reservation', 'add')}
+        {control reservationForm}
+    {/if}
+    
+    
 </div>

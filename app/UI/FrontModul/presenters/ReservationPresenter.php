@@ -3,8 +3,8 @@
 namespace App\UI\FrontModul\Presenters;
 
 use Nette\Application\UI\Form;
-use App\UI\FrontModul\UserManager;
-use App\UI\FrontModul\ReservationManager;
+use App\UI\FrontModul\presenters\UserManager;
+use App\UI\FrontModul\Presenters\ReservationManager;
 final class ReservationPresenter extends BasePresenter
 {
     private ReservationManager $reservationManager;
