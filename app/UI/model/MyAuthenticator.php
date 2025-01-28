@@ -2,6 +2,7 @@
 
 namespace App\UI\Model;
 
+use Nette\Security\IAuthenticator;
 use Nette\Security\SimpleIdentity;
 use App\Model\UserFacade;
 use Nette\Security\Authenticator;
@@ -20,7 +21,7 @@ class MyAuthenticator implements Authenticator
         $this->passwords = $passwords;
     }
 
-    public function authenticate(string $user, string $password): IIdentity
+    public function authenticate(string $user, string $password):IIdentity
     {
         // Získání uživatele podle e-mailu
         $row = $this->userFacade->getByEmail($user);
