@@ -26,7 +26,7 @@ class FormFactory
         
         $form = $this->formFactory->create();
 
-        //$form->getElementPrototype()->setAttribute('novalidate','novalidate');
+        $form->getElementPrototype()->setAttribute('autocomplete','email' );
 
         $form->addEmail('email', 'Váš E-mail:')
             ->setRequired('Prosím vyplňte svůj E-mail:.');
