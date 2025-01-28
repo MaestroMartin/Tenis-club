@@ -9,7 +9,7 @@ CREATE TABLE users (
 
 
 INSERT INTO users (first_name, last_name, email, password, role) VALUES
-('Admin', 'User', 'admin@example.com', '$2y$12$examplehashedpassword1', 'admin'),
-('John', 'Doe', 'john.doe@example.com', '$2y$12$examplehashedpassword2', 'member'),
-('Jane', 'Doe', 'jane.doe@example.com', '$2y$12$examplehashedpassword3', 'member'),
-('Tennis', 'Admin', 'tennis.admin@example.com', '$2y$12$examplehashedpassword4', 'admin');
+('Admin', 'User', 'admin@example.com', '$2y$12$examplehashedpassword1', 'admin'), // password is 'adminpass'
+('John', 'Doe', 'john.doe@example.com', '$2y$12$examplehashedpassword2', 'member'), // password is 'johnpass'
+('Jane', 'Doe', 'jane.doe@example.com', '$2y$12$examplehashedpassword3', 'member'), // password is 'janepass'
+('Tennis', 'Admin', 'tennis.admin@example.com', '$2y$12$examplehashedpassword4', 'admin');// password is 'tennispass'
