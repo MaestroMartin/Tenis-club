@@ -1,0 +1,23 @@
+services:
+	- App\Core\RouterFactory::createRouter
+	- App\UI\FrontModul\presenters\ReservationManager
+	- App\UI\FrontModul\presenters\UserManager
+	- App\UI\model\AuthorizatorFactory::create
+	- App\UI\User\Sign\ControlFactory
+	- App\UI\User\Sign\Control
+	- App\UI\User\Sign\FormFactory
+	- App\UI\Model\AddReservationManager
+	- App\UI\Model\UserManager	
+
+
+
+search:
+	-	in: %appDir%/UI/model
+		classes:
+			- *Facade
+			- *Factory
+			- *Repository
+			- *Service
+	- in: %appDir%/Core
+		classes:
+			- *Factory
