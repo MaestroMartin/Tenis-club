@@ -18,7 +18,7 @@
             <th>Time</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table-body">
         {foreach $reservations as $reservation}
             <tr>
                 <td>{$reservation->id}</td>
@@ -30,5 +30,64 @@
         {/foreach}
     </tbody>
     </table>
+    <style>
+    /* Celá stránka – vertikální a horizontální centrování */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrovat vše horizontálně */
+            justify-content: center; /* Centrovat vertikálně */
+            background-color: #f8f9fa;
+        }
+
+/* Centrované kontejnery */
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+             margin-bottom: 20px;
+        }
+
+/* Tabulka – vycentrování a styl */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto; /* Centrovat tabulku */
+}
+
+/* Hlavička tabulky */
+.table th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Řádky tabulky */
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Zebra efekt pro lepší čitelnost */
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Přidání efektu při přejetí myší */
+.table tbody tr:hover {
+    background-color: #ddd;
+    transition: 0.3s;
+}
+
+    </style>
 </div>
 {/block}
+

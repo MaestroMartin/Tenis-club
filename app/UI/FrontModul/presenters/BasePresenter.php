@@ -17,6 +17,7 @@ abstract class BasePresenter extends Presenter
         $acl = AuthorizatorFactory::create();
         // Check if user is logged in
         $roles = $this->user->getRoles();
+        //$this->setLayout('@layout');
         $isAllowed = false;
         foreach ($roles as $role) {
             if ($acl->isAllowed($role, 'front', 'view')) {
@@ -30,14 +31,7 @@ abstract class BasePresenter extends Presenter
         }
     }
     
-    protected function beforeRender(): void
-    {
-    parent::beforeRender();
-    dump(__DIR__ . '/../../templates/@layout.latte'); // Kontrola cesty
-    $this->setLayout(__DIR__ . '/../../templates/@layout.latte');
-    }
-
-    protected function isAdmin(): bool
+       protected function isAdmin(): bool
     {
         return $this->getUser()->isInRole('admin');
     }

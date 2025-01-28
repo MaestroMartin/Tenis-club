@@ -3,16 +3,16 @@
 namespace App\UI\Presenters;
 
 use Nette;
-use App\UI\Model\ReservationManager;
+use App\UI\Model\AddReservationManager;
 use App\UI\Model\UserManager;
 use Nette\Application\UI\Form;
 final class AdminPresenter extends Nette\Application\UI\Presenter
 {
-    private ReservationManager $reservationManager;
+    private AddReservationManager $reservationManager;
     private UserManager $userManager;
 
     public function __construct(
-        ReservationManager $reservationManager,
+        AddReservationManager $reservationManager,
         UserManager $userManager
     ) {
         $this->reservationManager = $reservationManager;

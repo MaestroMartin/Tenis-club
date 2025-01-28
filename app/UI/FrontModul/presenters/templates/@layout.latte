@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Tennis Club</title>
-    <link rel="stylesheet" href="app/www/css/style.css">
+    <link rel="stylesheet" href="{$basePath}/static/css/style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
+    
     <!-- Sidebar -->
     <nav class="sidebar">
         <header>
@@ -30,15 +31,15 @@
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="Home:">
+                        <a n:href="Home:default">
                             <i class="bx bx-home-alt icon"></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
+                        <a n:href="reservation:default">
                             <i class="bx bx-bar-chart icon"></i>
-                            <span class="text nav-text">My programs</span>
+                            <span class="text nav-text">reservation</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -47,23 +48,24 @@
                             <span class="text nav-text">Contact</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="">
-                            <i class="bx bx-log-in icon"></i>
-                            <span class="text nav-text">Log in</span>
-                        </a>
-                    </li>
+		            {if $user->isAllowed('front','logout')}
+			            <li class="nav-link">
+                            <a n:href="Sign:out"class="ajax">Odhlásit</a>
+                        </li>
+		            {else}
+			            <li class="nav-link">
+                            <a n:href="Sign:in"class="ajax">Přihlásit</a>
+                        </li>
+		            {/if}
                 </ul>
-            </div>
-            <div class="bottom-content">
-                <li>
-                    <a href="">
-                        <i class="bx bx-log-out icon"></i>
-                        <span class="text nav-text">Log out</span>
-                    </a>
-                </li>
             </div>
         </div>
     </nav>
+    <main>
+    {include content}
+    </main>
+     {block scripts}
+    <script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+    {/block}
 </body>
 </html>

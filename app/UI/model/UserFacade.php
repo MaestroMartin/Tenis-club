@@ -6,10 +6,11 @@ use Nette;
 use Nette\Database\Explorer;
 use Nette\Utils\ArrayHash;
 use Nette\Security\Passwords;
-use Nette\Security\Identity;
 
+use Nette\Security\SimpleIdentity;
 class UserFacade
 {
+    use Nette\SmartObject;
     private Explorer $database;
     private Passwords $passwords;
 
@@ -64,7 +65,7 @@ class UserFacade
         $this->database->table('users')->where('id', $userId)->delete();
     }
 
-    public function authenticate(string $username, string $password): ?Identity
+    public function authenticate(string $username, string $password)
     {
         $user = $this->database->table('users')->where('username', $username)->fetch();
 
@@ -72,7 +73,7 @@ class UserFacade
             throw new Nette\Security\AuthenticationException('Invalid credentials');
         }
 
-        return new Identity($user->id, $user->role, ['username' => $user->username, 'email' => $user->email]);
+        return new SimpleIdentity($user->id, $user->role, ['username' => $user->username, 'email' => $user->email]);
     }
 
     public function changePassword(int $userId, string $newPassword): void

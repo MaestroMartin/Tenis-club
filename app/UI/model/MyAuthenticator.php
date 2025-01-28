@@ -3,7 +3,7 @@
 namespace App\UI\Model;
 
 use Nette\Security\SimpleIdentity;
-use App\UI\Model\UserFacade;
+use App\Model\UserFacade;
 use Nette\Security\Authenticator;
 use Nette\Security\IIdentity;
 use Nette\Security\Passwords;
@@ -12,16 +12,11 @@ use Nette\Security\AuthenticationException;
 class MyAuthenticator implements Authenticator
 {
     private UserFacade $userFacade;
-    private RoleFacade $roleFacade;
     private Passwords $passwords;
 
-    public function __construct(
-        UserFacade $userFacade,
-        RoleFacade $roleFacade,
-        Passwords $passwords
-    ) {
+    public function __construct(UserFacade $userFacade, Passwords $passwords)
+    {
         $this->userFacade = $userFacade;
-        $this->roleFacade = $roleFacade;
         $this->passwords = $passwords;
     }
 
@@ -39,20 +34,9 @@ class MyAuthenticator implements Authenticator
             throw new AuthenticationException('Invalid password.');
         }
 
-        // Ověření, zda heslo nevyžaduje rehash
-        if ($this->passwords->needsRehash($row->password)) {
-            $newHash = $this->passwords->hash($password);
-            $this->userFacade->updatePassword($row->id, $newHash);
-        }
+        // Použití role jako jednoduchého stringu
+        $role = $row->role ?? 'guest'; // Pokud role neexistuje, použije se "user"
 
-        // Připravení dat identity
-        $userData = $row->toArray();
-        unset($userData['password']);
-
-        return new SimpleIdentity(
-            $row->id,
-            $this->roleFacade->findAllByUserIdAsEntity($row->id), // Role uživatele
-            $userData // Další data uživatele
-        );
+        return new SimpleIdentity($row->id, $role);
     }
 }

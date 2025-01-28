@@ -9,26 +9,29 @@ use Nette\Security\User;
 
 Trait SecurePresenterTrait
 {
-    
-
-    public function __construct(
-        private User $user,
-        
-    ){}
-    
+    /**
+     * @inject
+     * 
+     */
+    public User $user;
+   /**  public function __construct(
+    *    protected User $user,
+     *   
+   * ){}
+    */
     
     public function startup(): void
     {
         parent::startup();
     $acl = AuthorizatorFactory::create();
-    $acl->addResource('reservation');
+   // $acl->addResource('reservation');
 
     $roles = $this->user->getRoles();
     $isAllowed = false;
     foreach ($roles as $role) {
         if ($acl->isAllowed($role, 'reservation', 'view')) {
             $isAllowed = true;
-            break;
+            break;  
         }
     }
     if (!$isAllowed) {

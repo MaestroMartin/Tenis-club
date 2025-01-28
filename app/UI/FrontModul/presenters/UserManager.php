@@ -17,12 +17,12 @@ class UserManager
 
     public function getAllUsers(): array
     {
-        return $this->database->table('user')->fetchAll();
+        return $this->database->table('users')->fetchAll();
     }
 
     public function addUser(string $username, string $password, string $role): void
     {
-        $this->database->table('user')->insert([
+        $this->database->table('users')->insert([
             'username' => $username,
             'password' => password_hash($password, PASSWORD_BCRYPT),
             'role' => $role,
@@ -31,6 +31,6 @@ class UserManager
 
     public function getUserByUsername(string $username)
     {
-        return $this->database->table('user')->where('username', $username)->fetch();
+        return $this->database->table('users')->where('username', $username)->fetch();
     }
 }

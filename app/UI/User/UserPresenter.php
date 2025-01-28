@@ -51,7 +51,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
     }
 }
 
-    public function createComponentEditUserForm(): Nette\Application\UI\Form
+    public function createComponentLogInForm(): Nette\Application\UI\Form
     {
         $form = new Nette\Application\UI\Form;
         $form->addText('username', 'Username:')
@@ -78,7 +78,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             $this->flashMessage('User created successfully.', 'success');
         }
 
-        $this->redirect('default');
+        $this->redirect('Home:default');
     }
 
     public function handleDelete(int $userId): void

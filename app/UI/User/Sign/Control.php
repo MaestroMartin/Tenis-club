@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\UI\User\Sign\In;
+namespace App\UI\User\Sign;
 
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Control as C;
@@ -26,7 +26,7 @@ class Control extends C
 
     public function render(): void
     {
-        $this->template->setFile(__DIR__ . '/formdefault.latte');
+        $this->template->setFile(__DIR__ . '/default.latte');
         $this->template->render();
     }
 

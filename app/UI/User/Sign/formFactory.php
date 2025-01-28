@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace App\UI\User\Sign\In;
+namespace App\UI\User\Sign;
 
 use App\Core\FormFactory as CoreFormFactory;
 use Exception;
@@ -19,7 +19,7 @@ class FormFactory
     public function __construct(
         private User $user,
         private CoreFormFactory $formFactory,
-        private \App\UI\User\Sign\In\ControlFactory $signInFormFactory
+        private \App\UI\User\Sign\ControlFactory $signInFormFactory
     ){}
 
     public function create(): Form{

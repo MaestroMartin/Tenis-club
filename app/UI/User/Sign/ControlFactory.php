@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\UI\User\Sign\In;
+namespace App\UI\User\Sign;
 
 
-interface ControlFactory
+interface ControlFactory 
 {
 
     public function create(callable $onSuccess): Control;

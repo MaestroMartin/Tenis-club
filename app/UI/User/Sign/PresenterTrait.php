@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\UI\User\Sign\In;
 
-
+use App\UI\User\Sign\ControlFactory;
+use Nette\Application\UI\Control;
 
 trait PresenterTrait
 {
@@ -26,7 +27,7 @@ trait PresenterTrait
     {      
         $this->flashMessage('Úspěšně přihlášeno.', 'success');
         $this->restoreRequest($this->storeRequestId);
-        $this->redirect('Home:');
+        $this->redirect('Home:defaul');
     }
     
 

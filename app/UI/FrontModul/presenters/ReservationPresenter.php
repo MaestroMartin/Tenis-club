@@ -6,15 +6,12 @@ use Nette\Application\UI\Form;
 use App\UI\FrontModul\presenters\UserManager;
 use App\UI\FrontModul\Presenters\ReservationManager;
 final class ReservationPresenter extends BasePresenter
-{
-    private ReservationManager $reservationManager;
-    private UserManager $userManager;
+{   
 
-    public function __construct(ReservationManager $reservationManager, UserManager $userManager)
-    {
-        $this->reservationManager = $reservationManager;
-        $this->userManager = $userManager;
-    }
+    public function __construct(
+        private ReservationManager $reservationManager,
+        private  UserManager $userManager
+    ){}
 
     public function renderDefault(): void
     {
@@ -22,7 +19,12 @@ final class ReservationPresenter extends BasePresenter
             $this->template->reservations = $this->reservationManager->getAllReservations();
         } else {
             $userId = $this->getUser()->getId();
-            $this->template->reservations = $this->reservationManager->getUserReservations($userId);
+            if ($userId === null) {
+                $this->flashMessage('Please sign in to view your reservations.', 'info');
+                $this->redirect('Sign:in');
+            } else {
+                $this->template->reservations = $this->reservationManager->getReservationById($userId);
+            }
         }
     }
 

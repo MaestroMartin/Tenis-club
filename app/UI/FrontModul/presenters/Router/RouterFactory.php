@@ -16,10 +16,14 @@ final class RouterFactory
 	{
 		$router = new RouteList;
         $router->withModule('front');
-		$router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
-		$router->addRoute('login', 'Sign:in');
-		$router->addRoute('reservation', 'Reservation:default');
 		$router->addRoute('home', 'Home:default');
+		$router->addRoute('reservation', 'Reservation:default');
+		$router->addRoute('Sign', 'Sign:in');
+		$router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
+		
+		
+		
 		return $router;
 	}
 }
+ 

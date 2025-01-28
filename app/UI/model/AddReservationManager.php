@@ -7,7 +7,7 @@ namespace App\UI\Model;
 use Nette;
 use Nette\Database\Explorer;
 
-class ReservationManager
+class AddReservationManager
 {
     use Nette\SmartObject;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\UI\FrontModul\Presenters;
+namespace App\UI\Model;
 
 use Nette\SmartObject;
 use Nette\Database\Explorer;

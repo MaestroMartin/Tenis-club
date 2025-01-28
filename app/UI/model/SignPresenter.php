@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\UI\Model;
 
-use App\UI\FrontModul\BasePresenter;
+
 
 use App\UI\User\Sign\In\PresenterTrait;
 use Nette\Application\UI\Presenter;

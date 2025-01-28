@@ -4,6 +4,7 @@ namespace App\UI\FrontModul\Presenters;
 
 use Nette\Database\Explorer;
 use Nette\SmartObject;
+use Nette\Database\Row;
 class ReservationManager
 {
     use SmartObject;
@@ -33,13 +34,13 @@ class ReservationManager
     public function canReserve(int $userId, string $date, int $time): bool
     {
         $weeklyLimit = $this->getWeeklyLimit();
-        $reservationsCount = $this->database->table('reservations')
+        $reservationsCount = $this->database->table('reservation')
             ->where('user_id', $userId)
             ->where('date >= ?', date('Y-m-d', strtotime('monday this week')))
             ->where('date <= ?', date('Y-m-d', strtotime('sunday this week')))
             ->count();
 
-        $conflict = $this->database->table('reservations')
+        $conflict = $this->database->table('reservation')
             ->where('date', $date)
             ->where('time', $time)
             ->count();
@@ -49,11 +50,15 @@ class ReservationManager
 
     public function getWeeklyLimit(): int
     {
-        return (int) $this->database->table('settings')->where('key', 'weekly_limit')->fetchField('value') ?? 5;
+        return (int) $this->database->table('setting')->where('key', 'weekly_limit')->fetch()->value ?? 5;
     }
 
     public function setWeeklyLimit(int $limit): void
     {
-        $this->database->table('settings')->where('key', 'weekly_limit')->update(['value' => $limit]);
+        $this->database->table('setting')->where('key', 'weekly_limit')->update(['value' => $limit]);
+    }
+    public function getReservationById(int $reservationId): ?Row
+    {
+        return $this->database->table('reservation')->get($reservationId);
     }
 }

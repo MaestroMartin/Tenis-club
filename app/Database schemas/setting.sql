@@ -3,3 +3,4 @@ CREATE TABLE settings (
     key VARCHAR(50) UNIQUE,
     value VARCHAR(255) NOT NULL
 );
+

@@ -2,32 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\UI\FrontModul\Presenters;
+namespace App\UI\FrontModul\presenters;
 
 use App\UI\FrontModul\Presenters\BasePresenter;
 use App\UI\Model\AuthorizatorFactory;
-
+use App\UI\Model\AddReservationManager;
 // HomePresenter for the main page
 final class HomePresenter extends BasePresenter
 {
+    public function __construct(
+        private AddReservationManager $reservationManager
+    )
+    { }
 
     public function renderDefault(): void
     {
         $this->template->reservations = $this->reservationManager->getAllReservations();
     }
 
-    protected function beforeRender(): void
-    {
-    parent::beforeRender();
-    dump(__DIR__ . '/../../templates/@layout.latte'); // Kontrola cesty
-    $this->setLayout(__DIR__ . '/../../templates/@layout.latte');
-    }
+    
     protected function startup(): void
 {
     parent::startup();
     $acl = AuthorizatorFactory::create();
-    $acl->addResource('reservation');
-
+    
     $roles = $this->user->getRoles();
     $allowed = false;
     foreach ($roles as $role) {
