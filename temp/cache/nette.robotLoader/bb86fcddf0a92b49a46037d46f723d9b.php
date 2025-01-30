@@ -100,7 +100,7 @@ return array (
     'App\\UI\\Model\\MyAuthenticator' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/model/MyAuthenticator.php',
-      1 => 1738091391,
+      1 => 1738272072,
     ),
     'App\\UI\\Model\\RoleFacade' => 
     array (
@@ -110,7 +110,7 @@ return array (
     'App\\UI\\Model\\SignPresenter' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/model/SignPresenter.php',
-      1 => 1738087085,
+      1 => 1738272065,
     ),
     'App\\Model\\UserFacade' => 
     array (
@@ -125,7 +125,7 @@ return array (
     'App\\UI\\User\\Sign\\Control' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/User/Sign/Control.php',
-      1 => 1738086355,
+      1 => 1738271950,
     ),
     'App\\UI\\User\\Sign\\ControlFactory' => 
     array (
@@ -135,12 +135,12 @@ return array (
     'App\\UI\\User\\Sign\\FormFactory' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/User/Sign/formFactory.php',
-      1 => 1738082074,
+      1 => 1738097981,
     ),
-    'App\\UI\\User\\Sign\\In\\PresenterTrait' => 
+    'App\\UI\\User\\Sign\\PresenterTrait' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/User/Sign/PresenterTrait.php',
-      1 => 1738091552,
+      1 => 1738271938,
     ),
     'App\\UI\\User\\UserPresenter' => 
     array (
@@ -184,6 +184,7 @@ return array (
     'App\\UI\\FrontModul\\Presenters\\SignInTemplate' => 3,
     'App\\UI\\FrontModul\\Presenters\\SignTemplate' => 3,
     'App\\UI\\User\\Sign\\Template' => 3,
+    'App\\UI\\User\\Sign\\In\\PresenterTrait' => 2,
   ),
   2 => 
   array (

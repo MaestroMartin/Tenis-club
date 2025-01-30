@@ -6,7 +6,7 @@ namespace App\UI\Model;
 
 
 
-use App\UI\User\Sign\In\PresenterTrait;
+use App\UI\User\Sign\PresenterTrait;
 use Nette\Application\UI\Presenter;
 use Nette\SmartObject;
 

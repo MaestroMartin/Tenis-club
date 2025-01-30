@@ -2,7 +2,7 @@
 
 namespace App\UI\Model;
 
-use Nette\Security\IAuthenticator;
+
 use Nette\Security\SimpleIdentity;
 use App\Model\UserFacade;
 use Nette\Security\Authenticator;

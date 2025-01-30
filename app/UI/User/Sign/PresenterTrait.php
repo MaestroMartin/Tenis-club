@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\UI\User\Sign\In;
+namespace App\UI\User\Sign;
 
 use App\UI\User\Sign\ControlFactory;
 use Nette\Application\UI\Control;
