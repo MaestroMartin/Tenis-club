@@ -20,7 +20,7 @@ return array (
     'App\\Core\\RouterFactory' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/Core/RouterFactory.php',
-      1 => 1738083044,
+      1 => 1738526856,
     ),
     'App\\UI\\Accessory\\LatteExtension' => 
     array (
@@ -50,17 +50,17 @@ return array (
     'App\\UI\\FrontModul\\Presenters\\ReservationManager' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/ReservationManager.php',
-      1 => 1738520101,
+      1 => 1738522464,
     ),
     'App\\UI\\FrontModul\\Presenters\\ReservationPresenter' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/ReservationPresenter.php',
-      1 => 1738086074,
+      1 => 1738523081,
     ),
     'App\\UI\\FrontModul\\Router\\RouterFactory' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/Router/RouterFactory.php',
-      1 => 1738082878,
+      1 => 1738528358,
     ),
     'App\\UI\\FrontModul\\Presenters\\SecurePresenterTrait' => 
     array (
@@ -76,6 +76,11 @@ return array (
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/UserManager.php',
       1 => 1738517104,
+    ),
+    'App\\UI\\FrontModul\\Presenters\\UserPresenter' => 
+    array (
+      0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/UserPresenter.php',
+      1 => 1738529388,
     ),
     'App\\UI\\Model\\AddReservationManager' => 
     array (
@@ -112,11 +117,6 @@ return array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/model/SignPresenter.php',
       1 => 1738272065,
     ),
-    'App\\Model\\UserFacade' => 
-    array (
-      0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/model/UserFacade.php',
-      1 => 1738403978,
-    ),
     'App\\UI\\Model\\UserManager' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/model/UserManager.php',
@@ -142,10 +142,10 @@ return array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/User/Sign/PresenterTrait.php',
       1 => 1738271938,
     ),
-    'App\\UI\\User\\UserPresenter' => 
+    'App\\Model\\UserFacade' => 
     array (
-      0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/User/UserPresenter.php',
-      1 => 1738091601,
+      0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/model/UserFacade.php',
+      1 => 1738530104,
     ),
   ),
   1 => 
@@ -185,6 +185,14 @@ return array (
     'App\\UI\\FrontModul\\Presenters\\SignTemplate' => 3,
     'App\\UI\\User\\Sign\\Template' => 3,
     'App\\UI\\User\\Sign\\In\\PresenterTrait' => 2,
+    'App\\UI\\FrontModul\\Presenters\\ReservationAddTemplate' => 3,
+    'App\\UI\\FrontModul\\Presenters\\SignOutTemplate' => 3,
+    'App\\UI\\FrontModul\\presenters\\UserPresenter' => 3,
+    'App\\UI\\FrontModul\\presenters\\UserFacade' => 3,
+    'App\\UI\\FrontModul\\Presenters\\UserDefaultTemplate' => 3,
+    'App\\UI\\FrontModul\\Presenters\\UserTemplate' => 3,
+    'App\\UI\\FrontModul\\Presenters\\UserEditTemplate' => 3,
+    'App\\UI\\FrontModul\\Presenters\\UserAddTemplate' => 3,
   ),
   2 => 
   array (

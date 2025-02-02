@@ -4,26 +4,34 @@ namespace App\UI\FrontModul\Presenters;
 
 use Nette\Database\Explorer;
 use Nette\SmartObject;
-use Nette\Database\Row;
+
+use Nette\Database\Table\ActiveRow;
+
 class ReservationManager
 {
     use SmartObject;
 
     private Explorer $database;
 
-    public function __construct(Explorer $database)
+    public function __construct(Explorer $database,)
     {
         $this->database = $database;
+        
     }
 
-    public function getAllReservations(): array
+    public function getAllReservations()
     {
         return $this->database->table('reservations')->fetchAll();
     }
 
     public function addReservation(int $userId, int $court, string $date, int $time): void
     {
-        $this->database->table('reservations')->select('user_id', 'court', 'date', 'time')->fetchAll();
+        $this->database->table('reservations')->insert([
+            'user_id' => $userId,
+            'court' => $court,
+            'date' => $date,
+            'time' => $time,
+        ]);
     }
 
     public function canReserve(int $userId, string $date, int $time): bool
@@ -45,15 +53,20 @@ class ReservationManager
 
     public function getWeeklyLimit(): int
     {
-        return (int) $this->database->table('settings')->where('key', 'weekly_limit')->fetch()->value ?? 5;
+        $weeklyLimit = $this->database->table('settings')->where('key', 'weekly_limit')->fetch();
+        return $weeklyLimit ? (int) $weeklyLimit->value : 5;
     }
 
     public function setWeeklyLimit(int $limit): void
     {
         $this->database->table('settings')->where('key', 'weekly_limit')->update(['value' => $limit]);
     }
-    public function getReservationById(int $reservationId)
-    {
-        return $this->database->table('reservations')->get($reservationId);
-    }
+
+    public function getReservationsByUserId(int $userId): array
+{
+    return $this->database->table('reservations')
+        ->where('user_id', $userId)
+        ->fetchAll();
+}
+
 }

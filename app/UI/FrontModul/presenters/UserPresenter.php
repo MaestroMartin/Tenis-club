@@ -1,17 +1,23 @@
 <?php
 
-namespace App\UI\User;
+namespace App\UI\FrontModul\Presenters;
 
 use Nette;
 use App\Model\UserFacade;
 use App\UI\Model\AuthorizatorFactory;
+use Nette\Application\UI\Form;
+use Nette\Database\Explorer;
+
 final class UserPresenter extends Nette\Application\UI\Presenter
 {
     private UserFacade $userFacade;
+    private Explorer $database;
 
-    public function __construct(UserFacade $userFacade)
+    public function __construct(UserFacade $userFacade, Explorer $database)
     {
-        $this->userFacade = $userFacade;
+        $this->userFacade = $userFacade;    
+        $this->database = $database;
+
     }
 
     public function renderDefault(): void
@@ -19,23 +25,19 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         $this->template->users = $this->userFacade->getAllUsers();
     }
 
-    public function renderEdit(int $userId): void
+    public function renderEdit(int $id = null): void
     {
-        $user = $this->userFacade->getUserById($userId);
-
-        if (!$user) {
-            $this->flashMessage('User not found.', 'error');
-            $this->redirect('default');
+        if ($id) {
+            $this->template->editedUser = $this->database->table('users')->get($id);
         }
-
-        $this->template->user = $user;
     }
+
 
     protected function startup(): void
 {
     parent::startup();
     $acl = AuthorizatorFactory::create();
-    $acl->addResource('reservation');
+    
 
     $roles = $this->user->getRoles();
     $allowed = false;
@@ -51,13 +53,15 @@ final class UserPresenter extends Nette\Application\UI\Presenter
     }
 }
 
-    public function createComponentLogInForm(): Nette\Application\UI\Form
+    public function createComponentAddForm(): Form
     {
-        $form = new Nette\Application\UI\Form;
+        $form = new Form;
         $form->addText('username', 'Username:')
             ->setRequired('Please enter a username.');
         $form->addText('email', 'Email:')
             ->setRequired('Please enter an email address.');
+        $form->addPassword('password', 'Password:')
+            ->setRequired('Please enter a password.');
         $form->addSelect('role', 'Role:', ['admin' => 'Admin', 'member' => 'Member'])
             ->setRequired('Please select a role.');
         $form->addSubmit('save', 'Save');
@@ -66,7 +70,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         return $form;
     }
 
-    public function editUserFormSucceeded(Nette\Application\UI\Form $form, \stdClass $values): void
+    public function editUserFormSucceeded(Form $form, \stdClass $values): void
     {
         $userId = $this->getParameter('userId');
 

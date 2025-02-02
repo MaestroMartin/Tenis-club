@@ -8,6 +8,8 @@ use Nette\Utils\ArrayHash;
 use Nette\Security\Passwords;
 
 use Nette\Security\SimpleIdentity;
+use stdClass;
+
 class UserFacade
 {
     use Nette\SmartObject;
@@ -25,25 +27,29 @@ class UserFacade
         return $this->database->table('users')->fetchAll();
     }
 
-    public function getUserById(int $userId): ?Nette\Database\Row
+    public function getUserById(int $userId)
     {
         return $this->database->table('users')->get($userId);
     }
 
-    public function getByEmail(string $email): ?Nette\Database\Row
+    public function getByEmail(string $email)
     {
         return $this->database->table('users')->where('email', $email)->fetch();
     }
 
-    public function createUser(ArrayHash $data): void
+    public function createUser(stdClass $data): void
     {
-        $this->database->table('users')->insert([
-            'First_name' => $data->username,
-            'email' => $data->email,
-            'password' => $this->passwords->hash($data->password),
-            'role' => $data->role == 'member',
-        ]);
+    bdump($data, 'Obsah $data v createUser'); // Debugging
+
+    $this->database->table('users')->insert([
+        'first_name' => $data->username,
+        'email' => $data->email,
+        'password' => isset($data->password) ? $this->passwords->hash($data->password) : '',
+        'role' => $data->role,
+    ]);
     }
+
+
 
     public function updateUser(int $userId, ArrayHash $data): void
     {

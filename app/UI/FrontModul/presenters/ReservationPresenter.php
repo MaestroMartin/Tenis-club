@@ -15,18 +15,23 @@ final class ReservationPresenter extends BasePresenter
 
     public function renderDefault(): void
     {
-        if ($this->isAdmin()) {
-            $this->template->reservations = $this->reservationManager->getAllReservations();
+    if ($this->isAdmin()) {
+        
+        $this->template->reservations = $this->reservationManager->getAllReservations();
+    } else {
+        $userId = $this->getUser()->getId();
+
+        if ($userId === null) {
+            $this->flashMessage('Please sign in to view your reservations.', 'info');
+            $this->redirect('Sign:in');
         } else {
-            $userId = $this->getUser()->getId();
-            if ($userId === null) {
-                $this->flashMessage('Please sign in to view your reservations.', 'info');
-                $this->redirect('Sign:in');
-            } else {
-                $this->template->reservations = $this->reservationManager->getReservationById($userId);
-            }
+            
+            $this->template->reservations = $this->reservationManager->getReservationsByUserId($userId);
         }
     }
+    }
+
+    
 
     public function handleDeleteReservation(int $reservationId): void
     {
@@ -62,14 +67,14 @@ final class ReservationPresenter extends BasePresenter
 
         $this->reservationManager->addReservation($userId, $values->court, $values->date, $values->time);
         $this->flashMessage('Reservation successful!', 'success');
-        $this->redirect('this');
+        $this->redirect('home:default');
     }
 
     public function createComponentAdminSettingsForm(): Form
     {
         if (!$this->isAdmin()) {
             $this->flashMessage('Access denied: only admins can modify settings.', 'error');
-            $this->redirect('this');
+            $this->redirect('home:default');
         }
 
         $form = new Form;

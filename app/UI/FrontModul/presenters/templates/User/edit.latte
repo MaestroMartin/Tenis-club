@@ -1,0 +1,87 @@
+{block content}
+<div class="container">
+   <h1>Edit User: {$editedUser->username}</h1>
+
+    {ifset $editedUser}
+        {form addForm}
+            <div class="form-group">
+                {input username}
+                {label username /}
+            </div>
+            <div class="form-group">
+                {input email}
+                {label email /}
+            </div>
+            <div class="form-group">
+                {input password}
+                {label password /}
+            </div>
+            <div class="form-group">
+                {input role}
+                {label role /}
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+        {/form}
+    {/ifset}
+</div>
+<style>
+.container {
+    margin-left: 270px; /* Odsazení kvůli sidebaru */
+    max-width: 500px;
+    margin-top: 50px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Nadpis */
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Formulář */
+form {
+    width: 100%;
+}
+
+/* Formulářové skupiny */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Inputy a selecty */
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Labely */
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Tlačítko */
+.btn-success {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+</style>
+{/block}

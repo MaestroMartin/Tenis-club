@@ -20,7 +20,6 @@
                     <span class="profession">Web Developer</span>
                 </div>
             </div>
-            <i class="bx bx-chevron-right toggle"></i>
         </header>
 
         <div class="menu-bar">
@@ -43,20 +42,26 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
-                            <i class="bx bxs-contact icon"></i>
-                            <span class="text nav-text">Contact</span>
+                        <a n:href="User:default" class="ajax">
+                            <i class="bx bx-user icon"></i>
+                            <span class="text nav-text">User</span>
                         </a>
                     </li>
-		            {if $user->isAllowed('front','logout')}
-			            <li class="nav-link">
-                            <a n:href="Sign:out"class="ajax">Odhlásit</a>
+		            {if $user->isLoggedIn()}
+                        <li class="nav-link">
+                            <a n:href="Sign:out" class="ajax">
+                                <i class="bx bx-log-out icon"></i>
+                                <span class="text nav-text">Log out</span>
+                            </a>
                         </li>
-		            {else}
-			            <li class="nav-link">
-                            <a n:href="Sign:in"class="ajax">Přihlásit</a>
+                    {else}
+                        <li class="nav-link">
+                            <a n:href="Sign:in" class="ajax">
+                                <i class="bx bx-log-in icon"></i>
+                                <span class="text nav-text">Sign in</span>
+                            </a>                            
                         </li>
-		            {/if}
+                    {/if}
                 </ul>
             </div>
         </div>

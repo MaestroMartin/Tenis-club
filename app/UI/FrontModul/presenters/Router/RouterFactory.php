@@ -19,7 +19,11 @@ final class RouterFactory
 		$router->addRoute('home', 'Home:default');
 		$router->addRoute('reservation', 'Reservation:default');
 		$router->addRoute('Sign', 'Sign:in');
-		$router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
+		$router->addRoute('User', 'User:default');
+		$router->addRoute('reservation/add[/<id>]', 'Reservation:add');
+		$router->addRoute('User/Edit', 'User:edit');
+		$router->addRoute('User/addNew', 'User:add');
+
 		
 		
 		

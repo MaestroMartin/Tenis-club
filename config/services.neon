@@ -9,6 +9,8 @@ services:
 	- App\UI\Model\AddReservationManager
 	- App\UI\Model\UserManager	
 	- MyAuthenticator
+	- App\UI\FrontModul\presenters\UserPresenter
+	
 
 
 

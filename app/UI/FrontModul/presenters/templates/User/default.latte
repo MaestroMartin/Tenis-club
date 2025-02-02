@@ -1,0 +1,66 @@
+{block content}
+<div class="container">
+    <h1>User Management</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $users as $u}
+                <tr>
+                    <td>{$u->id}</td>
+                    <td>{$u->username}</td>
+                    <td>{$u->email}</td>
+                    <td>{$u->role}</td>
+                    <td>
+                        <a n:href="edit $u->id" class="btn btn-primary">Edit</a>
+                        <a n:href="delete! $u->id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
+
+    <a n:href="User:add" class="btn btn-success">Add New User</a>
+    <style>
+   .container {
+    margin-left: 270px; /* Odsazení kvůli sidebaru */
+    padding: 20px;
+}
+
+/* Tabulka */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+</style>
+</div>
+
+{/block}
