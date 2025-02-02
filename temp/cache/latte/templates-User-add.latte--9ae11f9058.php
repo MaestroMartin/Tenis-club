@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 use Latte\Runtime as LR;
 
-/** source: /mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/templates/User/add.latte */
-final class Template_b4a9f4fa0a extends Latte\Runtime\Template
+/** source: /mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/Presenters/templates/User/add.latte */
+final class Template_9ae11f9058 extends Latte\Runtime\Template
 {
-	public const Source = '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/templates/User/add.latte';
+	public const Source = '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/Presenters/templates/User/add.latte';
 
 	public const Blocks = [
 		['content' => 'blockContent'],
@@ -43,26 +43,26 @@ final class Template_b4a9f4fa0a extends Latte\Runtime\Template
 
         <div class="form-group">
             ';
-		echo Nette\Bridges\FormsLatte\Runtime::item('first_name', $this->global)->getControl() /* line 6 */;
+		echo Nette\Bridges\FormsLatte\Runtime::item('username', $this->global)->getControl() /* line 6 */;
 		echo '
             ';
-		echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('first_name', $this->global)->getLabel()) /* line 7 */;
-		echo '
-        </div>
-        <div class="form-group">
-            ';
-		echo Nette\Bridges\FormsLatte\Runtime::item('last_name', $this->global)->getControl() /* line 10 */;
-		echo '
-            ';
-		echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('last_name', $this->global)->getLabel()) /* line 11 */;
+		echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('username', $this->global)->getLabel()) /* line 7 */;
 		echo '
         </div>
         <div class="form-group">
             ';
-		echo Nette\Bridges\FormsLatte\Runtime::item('username', $this->global)->getControl() /* line 14 */;
+		echo Nette\Bridges\FormsLatte\Runtime::item('name', $this->global)->getControl() /* line 10 */;
 		echo '
             ';
-		echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('username', $this->global)->getLabel()) /* line 15 */;
+		echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('name', $this->global)->getLabel()) /* line 11 */;
+		echo '
+        </div>
+        <div class="form-group">
+            ';
+		echo Nette\Bridges\FormsLatte\Runtime::item('surname', $this->global)->getControl() /* line 14 */;
+		echo '
+            ';
+		echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('surname', $this->global)->getLabel()) /* line 15 */;
 		echo '
         </div>
         <div class="form-group">

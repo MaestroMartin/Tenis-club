@@ -35,21 +35,23 @@ class ReservationManager
     }
 
     public function canReserve(int $userId, string $date, int $time): bool
-    {
-        $weeklyLimit = $this->getWeeklyLimit();
-        $reservationsCount = $this->database->table('reservations')
-            ->where('user_id', $userId)
-            ->where('date >= ?', date('Y-m-d', strtotime('monday this week')))
-            ->where('date <= ?', date('Y-m-d', strtotime('sunday this week')))
-            ->count();
+{
+    $date = strtotime($date); // Převod string na timestamp (int)
 
-        $conflict = $this->database->table('reservations')
-            ->where('date', $date)
-            ->where('time', $time)
-            ->count();
+    $weeklyLimit = $this->getWeeklyLimit();
+    $reservationsCount = $this->database->table('reservations')
+        ->where('user_id', $userId)
+        ->where('date >= ?', date('d-m-Y', strtotime('monday this week')))
+        ->where('date <= ?', date('d-m-Y', strtotime('sunday this week')))
+        ->count();
 
-        return $reservationsCount < $weeklyLimit && $conflict === 0;
-    }
+    $conflict = $this->database->table('reservations')
+        ->where('date', date('d-m-Y', $date)) // Ujistíme se, že date je správně převedeno
+        ->where('time', $time)
+        ->count();
+
+    return $reservationsCount < $weeklyLimit && $conflict === 0;
+}
 
     public function getWeeklyLimit(): int
     {

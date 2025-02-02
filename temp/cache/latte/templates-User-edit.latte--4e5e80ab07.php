@@ -35,9 +35,7 @@ final class Template_4e5e80ab07 extends Latte\Runtime\Template
 		unset($ʟ_args);
 
 		echo '<div class="container">
-   <h1>';
-		echo LR\Filters::escapeHtmlText($editedUser) /* line 3 */;
-		echo 'Edit User: ';
+   <h1>Edit User: ';
 		echo LR\Filters::escapeHtmlText($editedUser->username) /* line 3 */;
 		echo '</h1>
 
@@ -97,55 +95,49 @@ final class Template_4e5e80ab07 extends Latte\Runtime\Template
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
+    }
 
-/* Nadpis */
-h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
+    h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
 
-/* Formulář */
-form {
-    width: 100%;
-}
+    form {
+        width: 100%;
+    }
 
-/* Formulářové skupiny */
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
 
-/* Inputy a selecty */
-input, select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
 
-/* Labely */
-label {
-    display: block;
-    font-weight: bold;
-    margin-top: 5px;
-}
+    label {
+        display: block;
+        font-weight: bold;
+        margin-top: 5px;
+    }
 
-/* Tlačítko */
-.btn-success {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
+    .btn-success {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
 </style>
 ';
 	}

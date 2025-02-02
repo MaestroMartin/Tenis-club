@@ -43,6 +43,8 @@ class UserFacade
 
     $this->database->table('users')->insert([
         'first_name' => $data->username,
+        'last_name' => $data->last_name,
+        'username' => $data->username,
         'email' => $data->email,
         'password' => isset($data->password) ? $this->passwords->hash($data->password) : '',
         'role' => $data->role,
@@ -66,10 +68,17 @@ class UserFacade
         $this->database->table('users')->where('id', $userId)->update($updateData);
     }
 
-    public function deleteUser(int $userId): void
-    {
-        $this->database->table('users')->where('id', $userId)->delete();
+    public function deleteUser(int $userId, Nette\Security\User $user): void
+{
+    // Ověření, zda je uživatel přihlášen a má roli admin
+    if (!$user->isLoggedIn() || !$user->isInRole('admin')) {
+        throw new \Nette\Security\AuthenticationException('Only admins can delete users.');
     }
+
+    // Smazání uživatele
+    $this->database->table('users')->where('id', $userId)->delete();
+}
+
 
     public function authenticate(string $email, string $password)
     {

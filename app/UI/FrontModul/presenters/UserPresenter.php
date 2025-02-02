@@ -56,6 +56,10 @@ final class UserPresenter extends Nette\Application\UI\Presenter
     public function createComponentAddForm(): Form
     {
         $form = new Form;
+        $form->addText('first_name', 'Name:')
+            ->setRequired('Please enter your Frist Name.');
+        $form->addText('last_name', 'Surname:')
+            ->setRequired('Please enter a Surname.');
         $form->addText('username', 'Username:')
             ->setRequired('Please enter a username.');
         $form->addText('email', 'Email:')
@@ -87,7 +91,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
 
     public function handleDelete(int $userId): void
     {
-        $this->userFacade->deleteUser($userId);
+        $this->userFacade->deleteUser($userId, $this->getUser());
         $this->flashMessage('User deleted successfully.', 'success');
         $this->redirect('this');
     }

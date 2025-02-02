@@ -41,12 +41,14 @@
                             <span class="text nav-text">reservation</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a n:href="User:default" class="ajax">
-                            <i class="bx bx-user icon"></i>
-                            <span class="text nav-text">User</span>
-                        </a>
-                    </li>
+                    {if $user->isLoggedIn()}
+                        <li class="nav-link">
+                            <a n:href="User:default " class="ajax">
+                                <i class="bx bx-user icon"></i>
+                                <span class="text nav-text">User</span>
+                            </a>
+                        </li>
+                    {/if}
 		            {if $user->isLoggedIn()}
                         <li class="nav-link">
                             <a n:href="Sign:out" class="ajax">
