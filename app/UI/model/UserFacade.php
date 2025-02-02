@@ -38,10 +38,10 @@ class UserFacade
     public function createUser(ArrayHash $data): void
     {
         $this->database->table('users')->insert([
-            'username' => $data->username,
+            'First_name' => $data->username,
             'email' => $data->email,
             'password' => $this->passwords->hash($data->password),
-            'role' => $data->role,
+            'role' => $data->role == 'member',
         ]);
     }
 
@@ -65,9 +65,9 @@ class UserFacade
         $this->database->table('users')->where('id', $userId)->delete();
     }
 
-    public function authenticate(string $username, string $password)
+    public function authenticate(string $email, string $password)
     {
-        $user = $this->database->table('users')->where('username', $username)->fetch();
+        $user = $this->database->table('users')->where('email', $email)->fetch();
 
         if (!$user || !$this->passwords->verify($password, $user->password)) {
             throw new Nette\Security\AuthenticationException('Invalid credentials');

@@ -1,6 +1,6 @@
 CREATE TABLE settings (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    key VARCHAR(50) UNIQUE,
-    value VARCHAR(255) NOT NULL
+    setting_key VARCHAR(50) UNIQUE,
+    value VARCHAR(255) not null
 );
 

@@ -8,6 +8,7 @@ services:
 	- App\UI\User\Sign\FormFactory
 	- App\UI\Model\AddReservationManager
 	- App\UI\Model\UserManager	
+	- MyAuthenticator
 
 
 

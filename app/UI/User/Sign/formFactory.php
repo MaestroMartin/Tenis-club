@@ -11,6 +11,9 @@ use Nette\Application\UI\Form;
 use Nette\SmartObject;
 use stdClass;
 use Nette\security\User;
+use Tracy\Debugger;
+use Nette\Security\AuthenticationException;
+use Nette\Security\SimpleIdentity;
 
 class FormFactory
 {   
@@ -37,17 +40,27 @@ class FormFactory
         $form->addSubmit('send', 'Přihlásit');
         
         $form->onSuccess[] = [$this, 'onSuccess'];
+        
+        Debugger::barDump($form, 'Vytvořený formulář');
+        
         return $form;
     }
 
-    
-
     public function onSuccess(Form $form, stdClass $values): void
     {
+        Debugger::barDump($values, 'Hodnoty z formuláře');
+        
         try {
             $this->user->login($values->email, $values->password);
+            Debugger::barDump('Uživatel úspěšně přihlášen', 'Login Status');
         } catch (Exception $e) {
+            Debugger::barDump($e->getMessage(), 'Login Error');
             $form->addError('Nesprávné přihlašovací jméno nebo heslo.');
         }
+        
+       
     }
+
+    
+    
 }

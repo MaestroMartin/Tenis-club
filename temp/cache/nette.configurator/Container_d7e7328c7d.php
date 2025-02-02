@@ -189,6 +189,9 @@ class Container_d7e7328c7d extends Nette\DI\Container
 		'App\UI\User\Sign\FormFactory' => [['07']],
 		'App\UI\Model\AddReservationManager' => [['08']],
 		'App\UI\Model\UserManager' => [['09']],
+		'Nette\Security\Authenticator' => [['010']],
+		'Nette\Security\IAuthenticator' => [['010']],
+		'MyAuthenticator' => [['010']],
 		'Nette\Application\UI\Presenter' => [
 			2 => [
 				'application.1',
@@ -225,11 +228,11 @@ class Container_d7e7328c7d extends Nette\DI\Container
 		'App\UI\User\UserPresenter' => [2 => ['application.8']],
 		'NetteModule\ErrorPresenter' => [2 => ['application.9']],
 		'NetteModule\MicroPresenter' => [2 => ['application.10']],
-		'App\UI\Model\AuthorizatorFactory' => [['010']],
-		'App\UI\Model\BaseManager' => [['011']],
-		'App\UI\Model\RoleFacade' => [['011']],
-		'App\Model\UserFacade' => [['012']],
-		'App\Core\FormFactory' => [['013']],
+		'App\UI\Model\AuthorizatorFactory' => [['011']],
+		'App\UI\Model\BaseManager' => [['012']],
+		'App\UI\Model\RoleFacade' => [['012']],
+		'App\Model\UserFacade' => [['013']],
+		'App\Core\FormFactory' => [['014']],
 	];
 
 
@@ -288,7 +291,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 
 	public function createService07(): App\UI\User\Sign\FormFactory
 	{
-		return new App\UI\User\Sign\FormFactory($this->getService('security.user'), $this->getService('013'), $this->getService('05'));
+		return new App\UI\User\Sign\FormFactory($this->getService('security.user'), $this->getService('014'), $this->getService('05'));
 	}
 
 
@@ -304,25 +307,31 @@ class Container_d7e7328c7d extends Nette\DI\Container
 	}
 
 
-	public function createService010(): App\UI\Model\AuthorizatorFactory
+	public function createService010(): MyAuthenticator
+	{
+		return new MyAuthenticator($this->getService('database.default.explorer'), $this->getService('security.passwords'));
+	}
+
+
+	public function createService011(): App\UI\Model\AuthorizatorFactory
 	{
 		return new App\UI\Model\AuthorizatorFactory;
 	}
 
 
-	public function createService011(): App\UI\Model\RoleFacade
+	public function createService012(): App\UI\Model\RoleFacade
 	{
 		return new App\UI\Model\RoleFacade($this->getService('database.default.explorer'));
 	}
 
 
-	public function createService012(): App\Model\UserFacade
+	public function createService013(): App\Model\UserFacade
 	{
 		return new App\Model\UserFacade($this->getService('database.default.explorer'), $this->getService('security.passwords'));
 	}
 
 
-	public function createService013(): App\Core\FormFactory
+	public function createService014(): App\Core\FormFactory
 	{
 		return new App\Core\FormFactory;
 	}
@@ -447,7 +456,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 
 	public function createServiceApplication__8(): App\UI\User\UserPresenter
 	{
-		$service = new App\UI\User\UserPresenter($this->getService('012'));
+		$service = new App\UI\User\UserPresenter($this->getService('013'));
 		$service->injectPrimary(
 			$this->getService('http.request'),
 			$this->getService('http.response'),
@@ -644,7 +653,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 
 	public function createServiceSecurity__user(): Nette\Security\User
 	{
-		$service = new Nette\Security\User($this->getService('security.userStorage'), authorizator: $this->getService('04'));
+		$service = new Nette\Security\User($this->getService('security.userStorage'), $this->getService('010'), $this->getService('04'));
 		$this->getService('tracy.bar')->addPanel(new Nette\Bridges\SecurityTracy\UserPanel($service));
 		return $service;
 	}

@@ -27,9 +27,9 @@ abstract class BaseManager{
         return $this->database->table($this->getTableName());
     }
 
-    public function getById(int $postid): ?ActiveRow
+    public function getById(int $id): ?ActiveRow
     {
-        return $this->getAll()->get($postid);
+        return $this->getAll()->get($id);
     }
 
     public function insert(array $data): ActiveRow

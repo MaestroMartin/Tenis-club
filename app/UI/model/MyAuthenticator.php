@@ -1,43 +1,41 @@
 <?php
 
-namespace App\UI\Model;
 
 
+use Nette;
 use Nette\Security\SimpleIdentity;
-use App\Model\UserFacade;
-use Nette\Security\Authenticator;
-use Nette\Security\IIdentity;
-use Nette\Security\Passwords;
 use Nette\Security\AuthenticationException;
+use Tracy\Debugger;
+use Nette\Security\Authenticator;
 
 class MyAuthenticator implements Authenticator
 {
-    private UserFacade $userFacade;
-    private Passwords $passwords;
+    public function __construct(
+        private Nette\Database\Explorer $database,
+        private Nette\Security\Passwords $passwords
+    ) {}
 
-    public function __construct(UserFacade $userFacade, Passwords $passwords)
+    public function authenticate(string $email, string $password): SimpleIdentity
     {
-        $this->userFacade = $userFacade;
-        $this->passwords = $passwords;
-    }
-
-    public function authenticate(string $user, string $password):IIdentity
-    {
-        // Získání uživatele podle e-mailu
-        $row = $this->userFacade->getByEmail($user);
+        $row = $this->database->table('users')
+            ->where('email', $email)
+            ->fetch();
 
         if (!$row) {
             throw new AuthenticationException('User not found.');
         }
 
-        // Ověření hesla
+        // Ověření hesla pomocí bcrypt (password_verify)
         if (!$this->passwords->verify($password, $row->password)) {
+            Debugger::barDump($password, 'Zadané heslo');
+            Debugger::barDump($row->password, 'Hash z databáze');
             throw new AuthenticationException('Invalid password.');
         }
 
-        // Použití role jako jednoduchého stringu
-        $role = $row->role ?? 'guest'; // Pokud role neexistuje, použije se "user"
-
-        return new SimpleIdentity($row->id, $role);
+        return new SimpleIdentity(
+            $row->id,
+            $row->role, // nebo pole více rolí
+            ['name' => $row->username]
+        );
     }
 }

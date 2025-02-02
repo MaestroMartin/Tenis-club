@@ -20,12 +20,12 @@ class UserManager
         return $this->database->table('users')->fetchAll();
     }
 
-    public function addUser(string $username, string $password, string $role): void
+    public function addUser(string $email, string $password, string $role): void
     {
         $this->database->table('users')->insert([
-            'username' => $username,
-            'password' => password_hash($password, PASSWORD_BCRYPT),
-            'role' => $role,
+            'email' => $email,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'role' => $role == 'member',
         ]);
     }
 
