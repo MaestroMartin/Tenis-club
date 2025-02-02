@@ -55,13 +55,13 @@ class ReservationManager
 
     public function getWeeklyLimit(): int
     {
-        $weeklyLimit = $this->database->table('settings')->where('key', 'weekly_limit')->fetch();
+        $weeklyLimit = $this->database->table('settings')->where('setting_key', 'weekly_limit')->fetch();
         return $weeklyLimit ? (int) $weeklyLimit->value : 5;
     }
 
     public function setWeeklyLimit(int $limit): void
     {
-        $this->database->table('settings')->where('key', 'weekly_limit')->update(['value' => $limit]);
+        $this->database->table('settings')->where('setting_key', 'weekly_limit')->update(['value' => $limit]);
     }
 
     public function getReservationsByUserId(int $userId): array

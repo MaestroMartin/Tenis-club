@@ -64,7 +64,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -82,7 +82,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -94,7 +94,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -106,7 +106,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -118,7 +118,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -130,7 +130,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -142,7 +142,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -154,7 +154,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -166,7 +166,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -178,7 +178,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 				'06',
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -196,7 +196,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 			2 => [
 				'011',
 				'application.1',
-				'application.2',
+				'application.3',
 				'application.4',
 				'application.5',
 				'application.6',
@@ -218,9 +218,9 @@ class Container_d7e7328c7d extends Nette\DI\Container
 			],
 		],
 		'App\UI\FrontModul\Presenters\UserPresenter' => [2 => ['011']],
-		'App\UI\Presenters\AdminPresenter' => [2 => ['application.1']],
-		'App\UI\Error\Error4xx\Error4xxPresenter' => [2 => ['application.2']],
-		'App\UI\Error\Error5xx\Error5xxPresenter' => [2 => ['application.3']],
+		'App\UI\Error\Error4xx\Error4xxPresenter' => [2 => ['application.1']],
+		'App\UI\Error\Error5xx\Error5xxPresenter' => [2 => ['application.2']],
+		'App\UI\FrontModul\Presenters\AdminPresenter' => [2 => ['application.3']],
 		'App\UI\FrontModul\Presenters\BasePresenter' => [2 => ['application.4', 'application.5']],
 		'App\UI\FrontModul\presenters\HomePresenter' => [2 => ['application.4']],
 		'App\UI\FrontModul\Presenters\ReservationPresenter' => [2 => ['application.5']],
@@ -354,24 +354,7 @@ class Container_d7e7328c7d extends Nette\DI\Container
 	}
 
 
-	public function createServiceApplication__1(): App\UI\Presenters\AdminPresenter
-	{
-		$service = new App\UI\Presenters\AdminPresenter($this->getService('08'), $this->getService('09'));
-		$service->injectPrimary(
-			$this->getService('http.request'),
-			$this->getService('http.response'),
-			$this->getService('application.presenterFactory'),
-			$this->getService('01'),
-			$this->getService('session.session'),
-			$this->getService('security.user'),
-			$this->getService('latte.templateFactory'),
-		);
-		$service->invalidLinkMode = 5;
-		return $service;
-	}
-
-
-	public function createServiceApplication__2(): App\UI\Error\Error4xx\Error4xxPresenter
+	public function createServiceApplication__1(): App\UI\Error\Error4xx\Error4xxPresenter
 	{
 		$service = new App\UI\Error\Error4xx\Error4xxPresenter;
 		$service->injectPrimary(
@@ -388,9 +371,26 @@ class Container_d7e7328c7d extends Nette\DI\Container
 	}
 
 
-	public function createServiceApplication__3(): App\UI\Error\Error5xx\Error5xxPresenter
+	public function createServiceApplication__2(): App\UI\Error\Error5xx\Error5xxPresenter
 	{
 		return new App\UI\Error\Error5xx\Error5xxPresenter($this->getService('tracy.logger'));
+	}
+
+
+	public function createServiceApplication__3(): App\UI\FrontModul\Presenters\AdminPresenter
+	{
+		$service = new App\UI\FrontModul\Presenters\AdminPresenter($this->getService('08'), $this->getService('09'));
+		$service->injectPrimary(
+			$this->getService('http.request'),
+			$this->getService('http.response'),
+			$this->getService('application.presenterFactory'),
+			$this->getService('01'),
+			$this->getService('session.session'),
+			$this->getService('security.user'),
+			$this->getService('latte.templateFactory'),
+		);
+		$service->invalidLinkMode = 5;
+		return $service;
 	}
 
 

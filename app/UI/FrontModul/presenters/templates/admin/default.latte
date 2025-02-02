@@ -22,7 +22,7 @@
                     <td>{$reservation->date}</td>
                     <td>{$reservation->time}:00</td>
                     <td>
-                        <a n:href="deleteReservation! {$reservation->id}" class="btn btn-danger">Delete</a>
+                        <a n:href="deleteReservation! $reservation->id" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             {/foreach}
@@ -40,13 +40,13 @@
             </tr>
         </thead>
         <tbody>
-            {foreach $users as $user}
+            {foreach $users as $u}
                 <tr>
-                    <td>{$user->id}</td>
-                    <td>{$user->username}</td>
-                    <td>{$user->role}</td>
+                    <td>{$u->id}</td>
+                    <td>{$u->username}</td>
+                    <td>{$u->role}</td>
                     <td>
-                        <a n:href="deleteUser! {$user->id}" class="btn btn-danger">Delete</a>
+                        <a n:href="deleteUser! $u->id" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             {/foreach}

@@ -77,13 +77,17 @@ final class Template_5a7760d507 extends Latte\Runtime\Template
 			echo LR\Filters::escapeHtmlText($u->role) /* line 21 */;
 			echo '</td>
                     <td>
-                    <a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('edit', [$u->id])) /* line 23 */;
-			echo '" class="btn btn-primary">Edit</a>
 ';
-			if ($user->isInRole('admin')) /* line 24 */ {
+			if ($user->isLoggedIn() && $user->getId() === $u->id) /* line 23 */ {
 				echo '                        <a href="';
-				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('delete!', [$u->id])) /* line 25 */;
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('edit', [$u->id])) /* line 24 */;
+				echo '" class="btn btn-primary">Edit</a>
+';
+			}
+			echo "\n";
+			if ($user->isInRole('admin')) /* line 27 */ {
+				echo '                        <a href="';
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('delete!', [$u->id])) /* line 28 */;
 				echo '" class="btn btn-danger" onclick="return confirm(\'Are you sure you want to delete this user?\');">
                             Delete
                         </a>
@@ -99,7 +103,7 @@ final class Template_5a7760d507 extends Latte\Runtime\Template
     </table>
 
     <a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('User:add')) /* line 35 */;
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('User:add')) /* line 38 */;
 		echo '" class="btn btn-success">Add New User</a>
     <style>
    .container {

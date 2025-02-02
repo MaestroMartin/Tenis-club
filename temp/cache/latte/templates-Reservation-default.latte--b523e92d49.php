@@ -79,15 +79,55 @@ final class Template_b523e92d49 extends Latte\Runtime\Template
 
 		echo '        </tbody>
     </table>
-    <h2>Make a Reservation</h2>
-';
-		if ($user->isallowed('Reservation', 'add')) /* line 24 */ {
-			$ʟ_tmp = $this->global->uiControl->getComponent('reservationForm');
-			if ($ʟ_tmp instanceof Nette\Application\UI\Renderable) $ʟ_tmp->redrawControl(null, false);
-			$ʟ_tmp->render() /* line 25 */;
+    <a href="';
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('reservation:add')) /* line 23 */;
+		echo '">Make a reservation</a>
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
 
-		}
-		echo '    
+        .container {
+            background-color: white; /* Ochrání sidebar před změnou */
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+    </style>
     
 </div>
 ';

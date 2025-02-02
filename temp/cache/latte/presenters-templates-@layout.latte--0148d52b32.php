@@ -72,11 +72,19 @@ final class Template_0148d52b32 extends Latte\Runtime\Template
                             <span class="text nav-text">reservation</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="';
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('admin:default')) /* line 45 */;
+		echo '">
+                            <i class="bx bx-bar-chart icon"></i>
+                            <span class="text nav-text">Settings</span>
+                        </a>
+                    </li>
 ';
-		if ($user->isLoggedIn()) /* line 44 */ {
+		if ($user->isLoggedIn()) /* line 50 */ {
 			echo '                        <li class="nav-link">
                             <a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('User:default')) /* line 46 */;
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('User:default')) /* line 52 */;
 			echo '" class="ajax">
                                 <i class="bx bx-user icon"></i>
                                 <span class="text nav-text">User</span>
@@ -84,20 +92,20 @@ final class Template_0148d52b32 extends Latte\Runtime\Template
                         </li>
 ';
 		}
-		if ($user->isLoggedIn()) /* line 52 */ {
+		if ($user->isLoggedIn()) /* line 58 */ {
 			echo '                        <li class="nav-link">
                             <a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('Sign:out')) /* line 54 */;
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('Sign:out')) /* line 60 */;
 			echo '" class="ajax">
                                 <i class="bx bx-log-out icon"></i>
                                 <span class="text nav-text">Log out</span>
                             </a>
                         </li>
 ';
-		} else /* line 59 */ {
+		} else /* line 65 */ {
 			echo '                        <li class="nav-link">
                             <a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('Sign:in')) /* line 61 */;
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('Sign:in')) /* line 67 */;
 			echo '" class="ajax">
                                 <i class="bx bx-log-in icon"></i>
                                 <span class="text nav-text">Sign in</span>
@@ -111,17 +119,17 @@ final class Template_0148d52b32 extends Latte\Runtime\Template
     </nav>
     <main>
 ';
-		$this->renderBlock('content', [], 'html') /* line 72 */;
+		$this->renderBlock('content', [], 'html') /* line 78 */;
 		echo '    </main>
 ';
-		$this->renderBlock('scripts', get_defined_vars()) /* line 74 */;
+		$this->renderBlock('scripts', get_defined_vars()) /* line 80 */;
 		echo '</body>
 </html>
 ';
 	}
 
 
-	/** {block scripts} on line 74 */
+	/** {block scripts} on line 80 */
 	public function blockScripts(array $ʟ_args): void
 	{
 		echo '    <script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>

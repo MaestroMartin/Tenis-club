@@ -30,12 +30,12 @@ class AddReservationManager
 
     public function setWeeklyLimit(int $limit): void
     {
-        $this->database->table('settings')->where('key', 'weekly_limit')->update(['value' => $limit]);
+        $this->database->table('settings')->where('setting_key', 'weekly_limit')->update(['value' => $limit]);
     }
 
     public function getWeeklyLimit(): int
     {
-        return (int) $this->database->table('settings')->where('key', 'weekly_limit')->fetchField('value');
+        return (int) $this->database->table('settings')->where('setting_key', 'weekly_limit')->fetchField('value');
     }
 
     public function getReservationById(int $reservationId): ?Nette\Database\Row

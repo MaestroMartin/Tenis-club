@@ -23,6 +23,7 @@ final class RouterFactory
 		$router->addRoute('reservation/add[/<id>]', 'Reservation:add');
 		$router->addRoute('User/Edit', 'User:edit');
 		$router->addRoute('User/addNew', 'User:add');
+		$router->addRoute('Admin', 'admin:default');
 
 		
 		

@@ -2,11 +2,6 @@
 return array (
   0 => 
   array (
-    'App\\UI\\Presenters\\AdminPresenter' => 
-    array (
-      0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/Admin/AdminPresenter.php',
-      1 => 1738085218,
-    ),
     'App\\Bootstrap' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/Bootstrap.php',
@@ -37,6 +32,11 @@ return array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/Error/Error5xx/Error5xxPresenter.php',
       1 => 1736819135,
     ),
+    'App\\UI\\FrontModul\\Presenters\\AdminPresenter' => 
+    array (
+      0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/AdminPresenter.php',
+      1 => 1738533702,
+    ),
     'App\\UI\\FrontModul\\Presenters\\BasePresenter' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/BasePresenter.php',
@@ -60,7 +60,7 @@ return array (
     'App\\UI\\FrontModul\\Router\\RouterFactory' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/Router/RouterFactory.php',
-      1 => 1738528358,
+      1 => 1738533807,
     ),
     'App\\UI\\FrontModul\\Presenters\\SecurePresenterTrait' => 
     array (
@@ -80,7 +80,7 @@ return array (
     'App\\UI\\FrontModul\\Presenters\\UserPresenter' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/UserPresenter.php',
-      1 => 1738532082,
+      1 => 1738533197,
     ),
     'App\\UI\\Model\\AddReservationManager' => 
     array (
@@ -193,6 +193,9 @@ return array (
     'App\\UI\\FrontModul\\Presenters\\UserTemplate' => 3,
     'App\\UI\\FrontModul\\Presenters\\UserEditTemplate' => 3,
     'App\\UI\\FrontModul\\Presenters\\UserAddTemplate' => 3,
+    'App\\UI\\Presenters\\AdminPresenter' => 2,
+    'App\\UI\\FrontModul\\Presenters\\AdminDefaultTemplate' => 3,
+    'App\\UI\\FrontModul\\Presenters\\AdminTemplate' => 3,
   ),
   2 => 
   array (
