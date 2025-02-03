@@ -9,6 +9,10 @@ final class Template_a34cb33039 extends Latte\Runtime\Template
 {
 	public const Source = '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/templates/Admin/default.latte';
 
+	public const Blocks = [
+		['content' => 'blockContent'],
+	];
+
 
 	public function main(array $ʟ_args): void
 	{
@@ -19,98 +23,8 @@ final class Template_a34cb33039 extends Latte\Runtime\Template
 			return;
 		}
 
-		echo '<div class="container">
-    <h1>Admin Dashboard</h1>
-
-    <h2>Reservations</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Reservation ID</th>
-                <th>User ID</th>
-                <th>Court</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-';
-		foreach ($reservations as $reservation) /* line 17 */ {
-			echo '                <tr>
-                    <td>';
-			echo LR\Filters::escapeHtmlText($reservation->id) /* line 19 */;
-			echo '</td>
-                    <td>';
-			echo LR\Filters::escapeHtmlText($reservation->user_id) /* line 20 */;
-			echo '</td>
-                    <td>';
-			echo LR\Filters::escapeHtmlText($reservation->court) /* line 21 */;
-			echo '</td>
-                    <td>';
-			echo LR\Filters::escapeHtmlText($reservation->date) /* line 22 */;
-			echo '</td>
-                    <td>';
-			echo LR\Filters::escapeHtmlText($reservation->time) /* line 23 */;
-			echo ':00</td>
-                    <td>
-                        <a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('deleteReservation!', [$reservation->id])) /* line 25 */;
-			echo '" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-';
-
-		}
-
-		echo '        </tbody>
-    </table>
-
-    <h2>Users</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-';
-		foreach ($users as $u) /* line 43 */ {
-			echo '                <tr>
-                    <td>';
-			echo LR\Filters::escapeHtmlText($u->id) /* line 45 */;
-			echo '</td>
-                    <td>';
-			echo LR\Filters::escapeHtmlText($u->username) /* line 46 */;
-			echo '</td>
-                    <td>';
-			echo LR\Filters::escapeHtmlText($u->role) /* line 47 */;
-			echo '</td>
-                    <td>
-                        <a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('deleteUser!', [$u->id])) /* line 49 */;
-			echo '" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-';
-
-		}
-
-		echo '        </tbody>
-    </table>
-
-    <h2>Settings</h2>
-    <div>
-';
-		$ʟ_tmp = $this->global->uiControl->getComponent('settingsForm');
-		if ($ʟ_tmp instanceof Nette\Application\UI\Renderable) $ʟ_tmp->redrawControl(null, false);
-		$ʟ_tmp->render() /* line 58 */;
-
-		echo '    </div>
-</div>';
+		$this->renderBlock('content', get_defined_vars()) /* line 1 */;
+		echo '    ';
 	}
 
 
@@ -119,10 +33,120 @@ final class Template_a34cb33039 extends Latte\Runtime\Template
 		extract($this->params);
 
 		if (!$this->getReferringTemplate() || $this->getReferenceType() === 'extends') {
-			foreach (array_intersect_key(['reservation' => '17', 'u' => '43'], $this->params) as $ʟ_v => $ʟ_l) {
+			foreach (array_intersect_key(['reservation' => '18'], $this->params) as $ʟ_v => $ʟ_l) {
 				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
 			}
 		}
 		return get_defined_vars();
+	}
+
+
+	/** {block content} on line 1 */
+	public function blockContent(array $ʟ_args): void
+	{
+		extract($this->params);
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		echo '    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <h2>Reservations</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Reservation ID</th>
+                    <th>User ID</th>
+                    <th>Court</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+';
+		foreach ($reservations as $reservation) /* line 18 */ {
+			echo '                    <tr>
+                        <td>';
+			echo LR\Filters::escapeHtmlText($reservation->id) /* line 20 */;
+			echo '</td>
+                        <td>';
+			echo LR\Filters::escapeHtmlText($reservation->user_id) /* line 21 */;
+			echo '</td>
+                        <td>';
+			echo LR\Filters::escapeHtmlText($reservation->court) /* line 22 */;
+			echo '</td>
+                        <td>';
+			echo LR\Filters::escapeHtmlText($reservation->date) /* line 23 */;
+			echo '</td>
+                        <td>';
+			echo LR\Filters::escapeHtmlText($reservation->time) /* line 24 */;
+			echo ':00</td>
+                        <td>
+                            <a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('deleteReservation!', [$reservation->id])) /* line 26 */;
+			echo '" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+';
+
+		}
+
+		echo '            </tbody>
+        </table>
+        
+        
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        .container {
+            margin-left: 270px; /* Odsazení pro sidebar */
+            padding: 20px;
+            width: calc(100% - 270px);
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .btn {
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+    </style>
+';
 	}
 }

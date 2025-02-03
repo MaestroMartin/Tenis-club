@@ -34,7 +34,7 @@ final class Template_b523e92d49 extends Latte\Runtime\Template
 		extract($this->params);
 
 		if (!$this->getReferringTemplate() || $this->getReferenceType() === 'extends') {
-			foreach (array_intersect_key(['reservation' => '14'], $this->params) as $ʟ_v => $ʟ_l) {
+			foreach (array_intersect_key(['reservation' => '15'], $this->params) as $ʟ_v => $ʟ_l) {
 				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
 			}
 		}
@@ -56,21 +56,25 @@ final class Template_b523e92d49 extends Latte\Runtime\Template
             <tr>
                 <th>Court</th>
                 <th>Date</th>
-                <th>Time</th>
+                <th>start rezervation</th>
+                <th>End rezervation</th>
             </tr>
         </thead>
         <tbody>
 ';
-		foreach ($reservations as $reservation) /* line 14 */ {
+		foreach ($reservations as $reservation) /* line 15 */ {
 			echo '                <tr>
                     <td>';
-			echo LR\Filters::escapeHtmlText($reservation->court) /* line 16 */;
+			echo LR\Filters::escapeHtmlText($reservation->court) /* line 17 */;
 			echo '</td>
                     <td>';
-			echo LR\Filters::escapeHtmlText($reservation->date) /* line 17 */;
+			echo LR\Filters::escapeHtmlText($reservation->date) /* line 18 */;
 			echo '</td>
                     <td>';
-			echo LR\Filters::escapeHtmlText($reservation->time) /* line 18 */;
+			echo LR\Filters::escapeHtmlText($reservation->time) /* line 19 */;
+			echo ':00</td>
+                    <td>';
+			echo LR\Filters::escapeHtmlText($reservation->format('end_time')) /* line 20 */;
 			echo ':00</td>
                 </tr>
 ';
@@ -80,8 +84,10 @@ final class Template_b523e92d49 extends Latte\Runtime\Template
 		echo '        </tbody>
     </table>
     <a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('reservation:add')) /* line 23 */;
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('reservation:add')) /* line 25 */;
 		echo '">Make a reservation</a>
+
+    
     <style>
     body {
             font-family: Arial, sans-serif;

@@ -28,46 +28,48 @@
                         <a n:href="delete! $u->id" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">
                             Delete
                         </a>
+                        
                     {/if}
+                    
                     </td>
                 </tr>
             {/foreach}
         </tbody>
     </table>
-
-    <a n:href="User:add" class="btn btn-success">Add New User</a>
+    {if $user->isInRole('admin')}
+        <a href="{link User:add}">ad new User</a>
+    {/if}
     <style>
    .container {
-    margin-left: 270px; /* Odsazení kvůli sidebaru */
-    padding: 20px;
-}
+        margin-left: 270px; 
+        padding: 20px;
+    }
 
-/* Tabulka */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-}
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+    }
 
-th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-}
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 
-tr:hover {
-    background-color: #ddd;
-}
-</style>
+    tr:hover {
+        background-color: #ddd;
+    }
+    </style>
 </div>
 
 {/block}

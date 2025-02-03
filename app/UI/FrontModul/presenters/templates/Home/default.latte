@@ -16,6 +16,7 @@
             <th>Court</th>
             <th>Date</th>
             <th>Time</th>
+            <th>End Time</th>
         </tr>
     </thead>
     <tbody class="table-body">
@@ -26,10 +27,13 @@
                 <td>Court {$reservation->court}</td>
                 <td>{$reservation->date|date}</td>
                 <td>{$reservation->time}:00</td>
+                <td>{$reservation->end_time}:00</td>
+
             </tr>
         {/foreach}
     </tbody>
     </table>
+        
     <style>
     /* Celá stránka – vertikální a horizontální centrování */
         html, body {
@@ -86,6 +90,10 @@
     background-color: #ddd;
     transition: 0.3s;
 }
+.junior { background-color: #4CAF50; } /* Zelená */
+.senior { background-color: #2196F3; } /* Modrá */
+.vip { background-color: #FFD700; } /* Zlatá */
+.standard { background-color: #FF5722; } /* Oranžová */
 
     </style>
 </div>

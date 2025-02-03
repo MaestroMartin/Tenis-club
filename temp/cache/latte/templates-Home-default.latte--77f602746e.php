@@ -36,7 +36,7 @@ final class Template_77f602746e extends Latte\Runtime\Template
 		extract($this->params);
 
 		if (!$this->getReferringTemplate() || $this->getReferenceType() === 'extends') {
-			foreach (array_intersect_key(['reservation' => '22'], $this->params) as $ʟ_v => $ʟ_l) {
+			foreach (array_intersect_key(['reservation' => '23'], $this->params) as $ʟ_v => $ʟ_l) {
 				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
 			}
 		}
@@ -66,27 +66,32 @@ final class Template_77f602746e extends Latte\Runtime\Template
             <th>Court</th>
             <th>Date</th>
             <th>Time</th>
+            <th>End Time</th>
         </tr>
     </thead>
     <tbody class="table-body">
 ';
-		foreach ($reservations as $reservation) /* line 22 */ {
+		foreach ($reservations as $reservation) /* line 23 */ {
 			echo '            <tr>
                 <td>';
-			echo LR\Filters::escapeHtmlText($reservation->id) /* line 24 */;
+			echo LR\Filters::escapeHtmlText($reservation->id) /* line 25 */;
 			echo '</td>
                 <td>';
-			echo LR\Filters::escapeHtmlText($reservation->user_id) /* line 25 */;
+			echo LR\Filters::escapeHtmlText($reservation->user_id) /* line 26 */;
 			echo '</td>
                 <td>Court ';
-			echo LR\Filters::escapeHtmlText($reservation->court) /* line 26 */;
+			echo LR\Filters::escapeHtmlText($reservation->court) /* line 27 */;
 			echo '</td>
                 <td>';
-			echo LR\Filters::escapeHtmlText(($this->filters->date)($reservation->date)) /* line 27 */;
+			echo LR\Filters::escapeHtmlText(($this->filters->date)($reservation->date)) /* line 28 */;
 			echo '</td>
                 <td>';
-			echo LR\Filters::escapeHtmlText($reservation->time) /* line 28 */;
+			echo LR\Filters::escapeHtmlText($reservation->time) /* line 29 */;
 			echo ':00</td>
+                <td>';
+			echo LR\Filters::escapeHtmlText($reservation->end_time) /* line 30 */;
+			echo ':00</td>
+
             </tr>
 ';
 
@@ -94,6 +99,7 @@ final class Template_77f602746e extends Latte\Runtime\Template
 
 		echo '    </tbody>
     </table>
+        
     <style>
     /* Celá stránka – vertikální a horizontální centrování */
         html, body {
@@ -150,6 +156,10 @@ final class Template_77f602746e extends Latte\Runtime\Template
     background-color: #ddd;
     transition: 0.3s;
 }
+.junior { background-color: #4CAF50; } /* Zelená */
+.senior { background-color: #2196F3; } /* Modrá */
+.vip { background-color: #FFD700; } /* Zlatá */
+.standard { background-color: #FF5722; } /* Oranžová */
 
     </style>
 </div>

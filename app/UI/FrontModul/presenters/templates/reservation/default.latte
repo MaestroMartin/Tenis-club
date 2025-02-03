@@ -7,7 +7,8 @@
             <tr>
                 <th>Court</th>
                 <th>Date</th>
-                <th>Time</th>
+                <th>start rezervation</th>
+                <th>End rezervation</th>
             </tr>
         </thead>
         <tbody>
@@ -16,11 +17,14 @@
                     <td>{$reservation->court}</td>
                     <td>{$reservation->date}</td>
                     <td>{$reservation->time}:00</td>
+                    <td>{$reservation->end_time}:00</td>
                 </tr>
             {/foreach}
         </tbody>
     </table>
     <a href="{link reservation:add}">Make a reservation</a>
+
+    
     <style>
     body {
             font-family: Arial, sans-serif;

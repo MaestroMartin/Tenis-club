@@ -91,9 +91,11 @@ final class Template_6098b32669 extends Latte\Runtime\Template
 				echo '" class="btn btn-danger" onclick="return confirm(\'Are you sure you want to delete this user?\');">
                             Delete
                         </a>
+                        
 ';
 			}
-			echo '                    </td>
+			echo '                    
+                    </td>
                 </tr>
 ';
 
@@ -101,42 +103,44 @@ final class Template_6098b32669 extends Latte\Runtime\Template
 
 		echo '        </tbody>
     </table>
-
-    <a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('User:add')) /* line 38 */;
-		echo '" class="btn btn-success">Add New User</a>
-    <style>
+';
+		if ($user->isInRole('admin')) /* line 39 */ {
+			echo '        <a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('User:add')) /* line 40 */;
+			echo '">ad new User</a>
+';
+		}
+		echo '    <style>
    .container {
-    margin-left: 270px; /* Odsazení kvůli sidebaru */
-    padding: 20px;
-}
+        margin-left: 270px; 
+        padding: 20px;
+    }
 
-/* Tabulka */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-}
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+    }
 
-th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-}
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 
-tr:hover {
-    background-color: #ddd;
-}
-</style>
+    tr:hover {
+        background-color: #ddd;
+    }
+    </style>
 </div>
 
 ';
