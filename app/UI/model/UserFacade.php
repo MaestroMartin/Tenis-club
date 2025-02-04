@@ -76,7 +76,7 @@ class UserFacade
     }
 
     // Smazání uživatele
-    $this->database->table('users')->where('id', $userId)->delete();
+    $this->database->table('users')->where('id', $userId)->delete() and $this->database->table('reservations')->where('user_id', $userId)->delete();
 }
 
 

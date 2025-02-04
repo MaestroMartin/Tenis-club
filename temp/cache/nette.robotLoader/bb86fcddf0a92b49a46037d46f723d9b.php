@@ -45,22 +45,22 @@ return array (
     'App\\UI\\FrontModul\\presenters\\HomePresenter' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/HomePresenter.php',
-      1 => 1738085245,
+      1 => 1738697398,
     ),
     'App\\UI\\FrontModul\\Presenters\\ReservationManager' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/ReservationManager.php',
-      1 => 1738612570,
+      1 => 1738697188,
     ),
     'App\\UI\\FrontModul\\Presenters\\ReservationPresenter' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/ReservationPresenter.php',
-      1 => 1738612376,
+      1 => 1738697301,
     ),
     'App\\UI\\FrontModul\\Router\\RouterFactory' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/Router/RouterFactory.php',
-      1 => 1738610661,
+      1 => 1738699749,
     ),
     'App\\UI\\FrontModul\\Presenters\\SecurePresenterTrait' => 
     array (
@@ -75,12 +75,12 @@ return array (
     'App\\UI\\FrontModul\\Presenters\\UserManager' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/UserManager.php',
-      1 => 1738531955,
+      1 => 1738692456,
     ),
     'App\\UI\\FrontModul\\Presenters\\UserPresenter' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/FrontModul/presenters/UserPresenter.php',
-      1 => 1738533197,
+      1 => 1738692627,
     ),
     'App\\UI\\Model\\AddReservationManager' => 
     array (
@@ -120,7 +120,7 @@ return array (
     'App\\Model\\UserFacade' => 
     array (
       0 => '/mnt/c/Users/pelma/desktop/Tenis-club/app/UI/model/UserFacade.php',
-      1 => 1738532454,
+      1 => 1738699340,
     ),
     'App\\UI\\Model\\UserManager' => 
     array (
@@ -197,6 +197,7 @@ return array (
     'App\\UI\\FrontModul\\Presenters\\AdminDefaultTemplate' => 3,
     'App\\UI\\FrontModul\\Presenters\\AdminTemplate' => 3,
     'App\\UI\\FrontModul\\Presenters\\AdminAddTemplate' => 3,
+    'App\\UI\\FrontModul\\Presenters\\AdminSettingsTemplate' => 3,
   ),
   2 => 
   array (

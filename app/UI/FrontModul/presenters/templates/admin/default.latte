@@ -14,25 +14,25 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                {foreach $reservations as $reservation}
-                    <tr>
-                        <td>{$reservation->id}</td>
-                        <td>{$reservation->user_id}</td>
-                        <td>{$reservation->court}</td>
-                        <td>{$reservation->date}</td>
-                        <td>{$reservation->time}:00</td>
-                        <td>{$reservation->end_time->format('H:i')}:00</td>
-                        <td>
-                            <a n:href="deleteReservation! $reservation->id" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
-                {/foreach}
-            </tbody>
+            {foreach $reservations as $reservation}
+                <tr style="background-color:{$reservation->color|noescape}">
+                    <td>{$reservation->id}</td>
+                    <td>{$reservation->user_id}</td>
+                    <td>{$reservation->court}</td>
+                    <td>{$reservation->date}</td>
+                    <td>{$reservation->time}:00</td>
+                    <td>{$reservation->end_time}:00</td>
+                    <td>
+                        <a n:href="deleteReservation! $reservation->id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {/foreach}
         </table>
+
+        <a href="{link admin:settings}" class="btn btn-primary">Settings</a>
         
         
-    </div>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -83,4 +83,5 @@
             background-color: #218838;
         }
     </style>
+</div>
 {/block}    

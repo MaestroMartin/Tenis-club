@@ -17,7 +17,12 @@ final class HomePresenter extends BasePresenter
 
     public function renderDefault(): void
     {
-        $this->template->reservations = $this->reservationManager->getAllReservations();
+        $reservations = $this->reservationManager->getAllReservations();
+        $this->template->reservations = $reservations;
+
+        foreach ($reservations as $reservation) {
+            bdump($reservation->color, "Reservation Color for ID {$reservation->id}");
+        }
     }
 
     

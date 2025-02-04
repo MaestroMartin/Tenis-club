@@ -68,6 +68,9 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             ->setRequired('Please enter a password.');
         $form->addSelect('role', 'Role:', ['admin' => 'Admin', 'member' => 'Member'])
             ->setRequired('Please select a role.');
+        $form->addText('color', 'Color:')
+             ->setRequired('Please select a color.');
+                
         $form->addSubmit('save', 'Save');
         $form->onSuccess[] = [$this, 'editUserFormSucceeded'];
 

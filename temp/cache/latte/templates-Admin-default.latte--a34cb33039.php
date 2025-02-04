@@ -33,7 +33,7 @@ final class Template_a34cb33039 extends Latte\Runtime\Template
 		extract($this->params);
 
 		if (!$this->getReferringTemplate() || $this->getReferenceType() === 'extends') {
-			foreach (array_intersect_key(['reservation' => '18'], $this->params) as $ʟ_v => $ʟ_l) {
+			foreach (array_intersect_key(['reservation' => '17'], $this->params) as $ʟ_v => $ʟ_l) {
 				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
 			}
 		}
@@ -63,40 +63,47 @@ final class Template_a34cb33039 extends Latte\Runtime\Template
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
 ';
-		foreach ($reservations as $reservation) /* line 18 */ {
-			echo '                    <tr>
-                        <td>';
-			echo LR\Filters::escapeHtmlText($reservation->id) /* line 20 */;
+		foreach ($reservations as $reservation) /* line 17 */ {
+			echo '                <tr style="background-color:';
+			echo LR\Filters::escapeHtmlQuotes($reservation->color) /* line 18 */;
+			echo '">
+                    <td>';
+			echo LR\Filters::escapeHtmlText($reservation->id) /* line 19 */;
 			echo '</td>
-                        <td>';
-			echo LR\Filters::escapeHtmlText($reservation->user_id) /* line 21 */;
+                    <td>';
+			echo LR\Filters::escapeHtmlText($reservation->user_id) /* line 20 */;
 			echo '</td>
-                        <td>';
-			echo LR\Filters::escapeHtmlText($reservation->court) /* line 22 */;
+                    <td>';
+			echo LR\Filters::escapeHtmlText($reservation->court) /* line 21 */;
 			echo '</td>
-                        <td>';
-			echo LR\Filters::escapeHtmlText($reservation->date) /* line 23 */;
+                    <td>';
+			echo LR\Filters::escapeHtmlText($reservation->date) /* line 22 */;
 			echo '</td>
-                        <td>';
-			echo LR\Filters::escapeHtmlText($reservation->time) /* line 24 */;
+                    <td>';
+			echo LR\Filters::escapeHtmlText($reservation->time) /* line 23 */;
 			echo ':00</td>
-                        <td>
-                            <a href="';
+                    <td>';
+			echo LR\Filters::escapeHtmlText($reservation->end_time) /* line 24 */;
+			echo ':00</td>
+                    <td>
+                        <a href="';
 			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('deleteReservation!', [$reservation->id])) /* line 26 */;
 			echo '" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
 ';
 
 		}
 
-		echo '            </tbody>
-        </table>
+		echo '        </table>
+
+        <a href="';
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('admin:settings')) /* line 32 */;
+		echo '" class="btn btn-primary">Settings</a>
         
         
-    </div>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -147,6 +154,7 @@ final class Template_a34cb33039 extends Latte\Runtime\Template
             background-color: #218838;
         }
     </style>
+</div>
 ';
 	}
 }

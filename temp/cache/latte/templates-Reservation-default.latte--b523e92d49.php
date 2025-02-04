@@ -74,7 +74,7 @@ final class Template_b523e92d49 extends Latte\Runtime\Template
 			echo LR\Filters::escapeHtmlText($reservation->time) /* line 19 */;
 			echo ':00</td>
                     <td>';
-			echo LR\Filters::escapeHtmlText($reservation->format('end_time')) /* line 20 */;
+			echo LR\Filters::escapeHtmlText($reservation->end_time) /* line 20 */;
 			echo ':00</td>
                 </tr>
 ';

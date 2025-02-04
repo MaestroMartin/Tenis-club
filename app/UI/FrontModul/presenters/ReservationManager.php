@@ -22,6 +22,9 @@ class ReservationManager
     public function getAllReservations()
     {
         return $this->database->table('reservations')->fetchAll();
+
+        foreach ($reservations as $reservation) {
+            bdump($reservation->color, "Reservation Color for ID {$reservation->id}");}
     }
 
     public function addReservation(int $userId, int $court, string $date, int $time, int $end_time): void
@@ -32,6 +35,7 @@ class ReservationManager
             'date' => $date,
             'time' => $time,
             'end_time' => $end_time,
+            
         ]);
     }
 

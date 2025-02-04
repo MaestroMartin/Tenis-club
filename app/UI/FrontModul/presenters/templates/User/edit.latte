@@ -16,11 +16,14 @@
                 {input password}
                 {label password /}
             </div>
-            <div class="form-group">
-                {input role === label="Role"}
-                {label role /}
-            </div>
+            {if $user->isInRole('admin')}
+                <div class="form-group">
+                    {input role === label="Role"}
+                    {label role /}
+                </div>
+            {/if}
             <button type="submit" class="btn btn-success">Save</button>
+            <a href="{link User:default}" class="btn btn-primary">Back</a>
         {/form}
     {/ifset}
 </div>

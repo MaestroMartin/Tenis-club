@@ -5,16 +5,14 @@ namespace App\UI\FrontModul\Presenters;
 use Nette\Application\UI\Form;
 use App\UI\FrontModul\presenters\UserManager;
 use App\UI\FrontModul\Presenters\ReservationManager;
-
-
 use DateTime;
 use Vtiful\Kernel\Format;
+
 final class ReservationPresenter extends BasePresenter
 {   
-
     public function __construct(
         private ReservationManager $reservationManager,
-        private  UserManager $userManager
+        private UserManager $userManager
     ){}
 
     public function renderDefault(): void
@@ -23,16 +21,18 @@ final class ReservationPresenter extends BasePresenter
             $reservations = $this->reservationManager->getAllReservations();
         } else {
             $userId = $this->getUser()->getId();
-    
+            bdump('color');
             if ($userId === null) {
                 $this->flashMessage('Please sign in to view your reservations.', 'info');
                 $this->redirect('Sign:in');
             } else {
                 $reservations = $this->reservationManager->getReservationsByUserId($userId);
             }
-            $this->template->reservations = $reservations;
         }
-    
+
+        
+
+        $this->template->reservations = $reservations;
     }
 
     public function handleDeleteReservation(int $reservationId): void
@@ -56,22 +56,14 @@ final class ReservationPresenter extends BasePresenter
              ->addRule($form::INTEGER, 'Time must be a number.');
         $form->addText('end_time','End Time:')->setRequired('Please select an end time.')
              ->addRule($form::INTEGER, 'End time must be a number.');
-            
+       
         $form->addSubmit('reserve', 'Reserve');
         $form->onSuccess[] = [$this, 'reservationFormSucceeded'];
         return $form;
-
-        if (strtotime($end_time) <= strtotime($time)) {
-            die("Konec rezervace musí být později než začátek.");
-        }
-        
-        
-        
     }
 
     public function reservationFormSucceeded(Form $form, \stdClass $values): void
     {
-        
         $userId = $this->getUser()->getId();
         if ($userId === null) {
             $this->flashMessage('Please sign in to make a reservation.', 'info');
@@ -82,7 +74,6 @@ final class ReservationPresenter extends BasePresenter
             $this->flashMessage('Reservation failed: time slot unavailable or limit exceeded.', 'error');
             return;
         }
-        
 
         $this->reservationManager->addReservation($userId, $values->court,  $values->date, $values->time, $values->end_time);
         $this->flashMessage('Reservation successful!', 'success');

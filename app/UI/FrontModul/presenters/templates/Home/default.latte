@@ -1,40 +1,8 @@
 <!-- Layout for HomePresenter: Welcome Page -->
 
 {block content}
-<div class="container">
-    <h1>Welcome to Tennis Club</h1>
-    <p>Manage your court reservations easily with our system.</p>
-</div>
-
-<div class="container">
-    <h1>Court Reservations Overview</h1>
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Reservation ID</th>
-            <th>User ID</th>
-            <th>Court</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>End Time</th>
-        </tr>
-    </thead>
-    <tbody class="table-body">
-        {foreach $reservations as $reservation}
-            <tr>
-                <td>{$reservation->id}</td>
-                <td>{$reservation->user_id}</td>
-                <td>Court {$reservation->court}</td>
-                <td>{$reservation->date|date}</td>
-                <td>{$reservation->time}:00</td>
-                <td>{$reservation->end_time}:00</td>
-
-            </tr>
-        {/foreach}
-    </tbody>
-    </table>
-        
-    <style>
+<head>
+<style>
     /* Celá stránka – vertikální a horizontální centrování */
         html, body {
             height: 100%;
@@ -52,17 +20,16 @@
             width: 80%;
             max-width: 800px;
             padding: 20px;
-            background: white;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-             margin-bottom: 20px;
+            margin-bottom: 20px;
         }
 
 /* Tabulka – vycentrování a styl */
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px auto; /* Centrovat tabulku */
+    text-align: center;
 }
 
 /* Hlavička tabulky */
@@ -80,22 +47,42 @@
     text-align: center;
 }
 
-/* Zebra efekt pro lepší čitelnost */
-.table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/* Přidání efektu při přejetí myší */
-.table tbody tr:hover {
-    background-color: #ddd;
-    transition: 0.3s;
-}
-.junior { background-color: #4CAF50; } /* Zelená */
-.senior { background-color: #2196F3; } /* Modrá */
-.vip { background-color: #FFD700; } /* Zlatá */
-.standard { background-color: #FF5722; } /* Oranžová */
 
     </style>
+</head>
+<div class="container">
+    <h1>Welcome to Tennis Club</h1>
+    <p>Manage your court reservations easily with our system.</p>
+</div>
+
+<div class="container">
+    <h1>Court Reservations Overview</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reservation ID</th>
+                <th>User ID</th>
+                <th>Court</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>End Time</th>
+            </tr>
+        </thead>
+        {foreach $reservations as $reservation}
+            <tr style="background-color:{$reservation->color|noescape}">
+                <div style="background-color:{$reservation->color|noescape}">
+                    <td>{$reservation->id}</td>
+                    <td>{$reservation->user_id}</td>
+                    <td>Court {$reservation->court}</td>
+                    <td>{$reservation->date|date}</td>
+                    <td>{$reservation->time}:00</td>
+                    <td>{$reservation->end_time}:00</td>                        
+                </div>
+            </tr>
+        {/foreach}
+    </table>
+        
+    
 </div>
 {/block}
 

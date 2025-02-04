@@ -82,9 +82,12 @@ final class Template_0d2a67da33 extends Latte\Runtime\Template
                         <td>';
 			echo LR\Filters::escapeHtmlText($reservation->time) /* line 24 */;
 			echo ':00</td>
+                        <td>';
+			echo LR\Filters::escapeHtmlText($reservation->end_time->format('H:i')) /* line 25 */;
+			echo ':00</td>
                         <td>
                             <a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('deleteReservation!', [$reservation->id])) /* line 26 */;
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('deleteReservation!', [$reservation->id])) /* line 27 */;
 			echo '" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
@@ -94,11 +97,59 @@ final class Template_0d2a67da33 extends Latte\Runtime\Template
 
 		echo '            </tbody>
         </table>
-        <a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('admin:add')) /* line 32 */;
-		echo '" class="btn btn-success">Add New User</a>
+        
         
     </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        .container {
+            margin-left: 270px; /* Odsazení pro sidebar */
+            padding: 20px;
+            width: calc(100% - 270px);
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .btn {
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+    </style>
 ';
 	}
 }
