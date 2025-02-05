@@ -90,6 +90,9 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         $form->addPassword('password', 'Password:')
              ->setRequired('Please enter a password.')
              ->setHtmlAttribute('class', 'form-control');
+        $form->addSelect('role', 'Role:', ['admin' => 'Admin', 'member' => 'Member'])
+             ->setRequired('Please select a role.')
+             ->setHtmlAttribute('class', 'form-control');
         $form->addSubmit('save', 'Save Changes')
             ->setHtmlAttribute('class', 'btn btn-success');
 
@@ -107,7 +110,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         $userId = $this->getParameter('id');
         bdump($userId, 'userId');
         if ($userId) {
-            $this->userFacade->updateUser($userId, $values);
+            $this->userFacade->updateUser($userId, $values, $this->getUser());
             $this->flashMessage('User updated successfully.', 'success');
             $this->redirect('User:default');
         } else {

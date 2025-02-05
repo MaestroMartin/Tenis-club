@@ -54,7 +54,7 @@ class UserFacade
 
 
 
-   public function updateUser(int $userId, stdClass $values): void
+   public function updateUser(int $userId, stdClass $values,$currentUser): void
 {
     // 1️⃣ Načtení aktuálních údajů uživatele
     $user = $this->database->table('users')->get($userId);
@@ -79,7 +79,7 @@ class UserFacade
     }
 
     // 🛠 Role lze měnit jen pokud je přihlášený admin
-    if (!empty($values->role) && $this->getUser()->isInRole('admin')) {
+    if (!empty($values->role) && $currentUser->isInRole('admin')) {
         $updateData['role'] = $values->role;
     }
 
