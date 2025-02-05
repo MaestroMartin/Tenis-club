@@ -73,7 +73,7 @@ final class Template_7fe0637f83 extends Latte\Runtime\Template
                         </a>
                     </li>
 ';
-		if ($user->isLoggedIn('admin')) /* line 44 */ {
+		if ($user->isLoggedIn() && $user->isInRole('admin')) /* line 44 */ {
 			echo '                        <li class="nav-link">
                             <a href="';
 			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('admin:default')) /* line 46 */;

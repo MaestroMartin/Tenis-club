@@ -143,11 +143,7 @@ final class Template_77f602746e extends Latte\Runtime\Template
 			echo ':00</td>
                     <td>';
 			echo LR\Filters::escapeHtmlText($reservation->end_time) /* line 79 */;
-			echo ':00</td>
-                    <td style="background-color:';
-			echo LR\Filters::escapeHtmlQuotes($reservation->color) /* line 80 */;
-			echo '"></td>
-                        
+			echo ':00</td>                        
                 </div>
             </tr>
 ';

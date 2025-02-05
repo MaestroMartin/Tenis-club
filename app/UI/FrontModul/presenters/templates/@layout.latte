@@ -41,7 +41,7 @@
                             <span class="text nav-text">reservation</span>
                         </a>
                     </li>
-                    {if $user->isLoggedIn('admin')}
+                    {if $user->isLoggedIn() && $user->isInRole('admin')}
                         <li class="nav-link">
                             <a n:href="admin:default">
                                 <i class="bx bx-bar-chart icon"></i>

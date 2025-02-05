@@ -78,7 +78,7 @@ final class Template_6098b32669 extends Latte\Runtime\Template
 			echo '</td>
                     <td>
 ';
-			if ($user->isLoggedIn() && $user->getId() === $u->id) /* line 23 */ {
+			if ($user->isLoggedIn() && $user->getId() === $u->id or $user->isInRole('admin')) /* line 23 */ {
 				echo '                        <a href="';
 				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('edit', [$u->id])) /* line 24 */;
 				echo '" class="btn btn-primary">Edit</a>

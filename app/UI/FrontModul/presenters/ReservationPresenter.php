@@ -51,7 +51,11 @@ final class ReservationPresenter extends BasePresenter
     {
         $form = new Form;
         $form->addSelect('court', 'Court:', [1 => 'Court 1', 2 => 'Court 2'])->setRequired('Please select a court.');
-        $form->addText('date', 'Date:')->setRequired('Please select a date.');
+        $form->addText('date', 'Date:')->setRequired('Please select a date.')
+        ->setRequired('Please select a date.')
+        ->setRequired('Please select a date.')
+        ->setHtmlType('date')
+        ->setHtmlAttribute('min', date('Y-m-d'));
         $form->addText('time', 'Time (hour):')->setRequired('Please select a start time.')
              ->addRule($form::INTEGER, 'Time must be a number.');
         $form->addText('end_time','End Time:')->setRequired('Please select an end time.')

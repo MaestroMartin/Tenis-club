@@ -89,9 +89,17 @@ final class Template_b4a9f4fa0a extends Latte\Runtime\Template
 		echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('role', $this->global)->getLabel()) /* line 27 */;
 		echo '
         </div>
+        <div class="form-group">
+            ';
+		echo Nette\Bridges\FormsLatte\Runtime::item('color', $this->global)->getControl() /* line 30 */;
+		echo '
+            ';
+		echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('color', $this->global)->getLabel()) /* line 31 */;
+		echo '
+        </div>
         <button type="submit" class="btn btn-success">Save</button>
     ';
-		echo Nette\Bridges\FormsLatte\Runtime::renderFormEnd(array_pop($this->global->formsStack)) /* line 30 */;
+		echo Nette\Bridges\FormsLatte\Runtime::renderFormEnd(array_pop($this->global->formsStack)) /* line 34 */;
 
 		echo '
     <style>

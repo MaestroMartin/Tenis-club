@@ -48,28 +48,52 @@ class UserFacade
         'email' => $data->email,
         'password' => isset($data->password) ? $this->passwords->hash($data->password) : '',
         'role' => $data->role,
+        'color' => $data->color,
     ]);
     }
 
 
 
-    public function updateUser(int $userId, ArrayHash $data): void
-    {
-        $updateData = [
-            'username' => $data->username,
-            'email' => $data->email,
-            'role' => $data->role,
-        ];
-
-        if (!empty($data->password)) {
-            $updateData['password'] = $this->passwords->hash($data->password);
-        }
-
-        $this->database->table('users')->where('id', $userId)->update($updateData);
+   public function updateUser(int $userId, stdClass $values): void
+{
+    // 1️⃣ Načtení aktuálních údajů uživatele
+    $user = $this->database->table('users')->get($userId);
+    if (!$user) {
+        throw new \Exception("Uživatel nenalezen.");
     }
 
+    // 2️⃣ Připravení dat pro aktualizaci
+    $updateData = [];
+
+    // 🛠 Aktualizace jen pokud byla hodnota zadána
+    if (!empty($values->username)) {
+        $updateData['username'] = $values->username;
+    }
+    
+    if (!empty($values->email)) {
+        $updateData['email'] = $values->email;
+    }
+    
+    if (!empty($values->password)) {
+        $updateData['password'] = $this->passwords->hash($values->password);
+    }
+
+    // 🛠 Role lze měnit jen pokud je přihlášený admin
+    if (!empty($values->role) && $this->getUser()->isInRole('admin')) {
+        $updateData['role'] = $values->role;
+    }
+
+    // 3️⃣ Pokud jsou nějaké změny, aktualizujeme
+    if (!empty($updateData)) {
+        $this->database->table('users')->where('id', $userId)->update($updateData);
+    }
+}
+
+
+
+
     public function deleteUser(int $userId, Nette\Security\User $user): void
-{
+    {
     // Ověření, zda je uživatel přihlášen a má roli admin
     if (!$user->isLoggedIn() || !$user->isInRole('admin')) {
         throw new \Nette\Security\AuthenticationException('Only admins can delete users.');
@@ -77,7 +101,7 @@ class UserFacade
 
     // Smazání uživatele
     $this->database->table('users')->where('id', $userId)->delete() and $this->database->table('reservations')->where('user_id', $userId)->delete();
-}
+    }
 
 
     public function authenticate(string $email, string $password)
@@ -94,19 +118,6 @@ class UserFacade
     public function changePassword(int $userId, string $newPassword): void
     {
         $this->database->table('users')->where('id', $userId)->update([
-            'password' => $this->passwords->hash($newPassword)
-        ]);
-    }
-
-    public function resetPassword(string $email, string $newPassword): void
-    {
-        $user = $this->database->table('users')->where('email', $email)->fetch();
-
-        if (!$user) {
-            throw new Nette\InvalidArgumentException('User with this email does not exist.');
-        }
-
-        $this->database->table('users')->where('id', $user->id)->update([
             'password' => $this->passwords->hash($newPassword)
         ]);
     }

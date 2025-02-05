@@ -33,4 +33,6 @@ class UserManager
     {
         return $this->database->table('users')->get($userId);
     }
+
+    
 }

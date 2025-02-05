@@ -3,7 +3,7 @@
    <h1>Edit User: {$editedUser->username}</h1>
 
     {ifset $editedUser}
-        {form addForm}
+        {form editForm}
             <div class="form-group">
                 {input username}
                 {label username /}
@@ -18,12 +18,12 @@
             </div>
             {if $user->isInRole('admin')}
                 <div class="form-group">
-                    {input role === label="Role"}
+                    {input role}
                     {label role /}
                 </div>
             {/if}
             <button type="submit" class="btn btn-success">Save</button>
-            <a href="{link User:default}" class="btn btn-primary">Back</a>
+            <a n:href="default" class="btn btn-primary">Back</a>
         {/form}
     {/ifset}
 </div>

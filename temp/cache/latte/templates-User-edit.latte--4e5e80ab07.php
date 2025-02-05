@@ -42,7 +42,7 @@ final class Template_4e5e80ab07 extends Latte\Runtime\Template
 ';
 		if (isset($editedUser)) /* line 5 */ {
 			echo '        ';
-			$form = $this->global->formsStack[] = $this->global->uiControl['addForm'] /* line 6 */;
+			$form = $this->global->formsStack[] = $this->global->uiControl['editForm'] /* line 6 */;
 			Nette\Bridges\FormsLatte\Runtime::initializeForm($form);
 			echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin($form, []) /* line 6 */;
 			echo '
@@ -70,17 +70,24 @@ final class Template_4e5e80ab07 extends Latte\Runtime\Template
 			echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('password', $this->global)->getLabel()) /* line 17 */;
 			echo '
             </div>
-            <div class="form-group">
-                ';
-			echo Nette\Bridges\FormsLatte\Runtime::item('role', $this->global)->getControl() /* line 20 */;
-			echo '
-                ';
-			echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('role', $this->global)->getLabel()) /* line 21 */;
-			echo '
-            </div>
-            <button type="submit" class="btn btn-success">Save</button>
+';
+			if ($user->isInRole('admin')) /* line 19 */ {
+				echo '                <div class="form-group">
+                    ';
+				echo Nette\Bridges\FormsLatte\Runtime::item('role', $this->global)->getControl() /* line 21 */;
+				echo '
+                    ';
+				echo ($ʟ_label = Nette\Bridges\FormsLatte\Runtime::item('role', $this->global)->getLabel()) /* line 22 */;
+				echo '
+                </div>
+';
+			}
+			echo '            <button type="submit" class="btn btn-success">Save</button>
+            <a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('default')) /* line 26 */;
+			echo '" class="btn btn-primary">Back</a>
         ';
-			echo Nette\Bridges\FormsLatte\Runtime::renderFormEnd(array_pop($this->global->formsStack)) /* line 24 */;
+			echo Nette\Bridges\FormsLatte\Runtime::renderFormEnd(array_pop($this->global->formsStack)) /* line 27 */;
 
 			echo "\n";
 		}

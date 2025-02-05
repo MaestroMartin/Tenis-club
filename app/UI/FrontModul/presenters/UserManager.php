@@ -3,6 +3,7 @@ namespace App\UI\FrontModul\Presenters;
 
 use Nette;
 use Nette\Database\Explorer;
+use stdClass;
 
 class UserManager
 {
@@ -20,7 +21,7 @@ class UserManager
         return $this->database->table('users')->fetchAll();
     }
 
-    public function addUser(string $first_name,string $last_name,string $username,string $email, string $password, string $role,$color): void
+    public function addUser(string $first_name,string $last_name,string $username,string $email, string $password, string $role, int $color): void
     {
         $this->database->table('users')->insert([
             'first_name' => $first_name,
@@ -28,13 +29,26 @@ class UserManager
             'username' => $username,
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
-            'role' => $role == 'member',
+            'role' => $role,
             'color' => $color,
+
+            
         ]);
     }
 
     public function getUserByUsername(string $username)
     {
         return $this->database->table('users')->where('username', $username)->fetch();
+    }
+
+    public function updateUser(int $userId, string $username, string $email, string $password, string $role): void
+    {
+        $this->database->table('users')->where('id', $userId)->update([
+            'username' => $username,
+            'email' => $email,
+            'password' => password_hash( $password, PASSWORD_DEFAULT),
+            'role' => $role,
+        ]);
+        
     }
 }
