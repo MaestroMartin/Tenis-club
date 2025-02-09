@@ -48,18 +48,21 @@ final class ReservationPresenter extends BasePresenter
     }
 
     public function createComponentReservationForm(): Form
-    {
+    {   
+        $timeOptionsStart = array_combine(range(8, 19), range(8, 19));
+        $timeOptionsEnd = array_combine(range(9, 20), range(9, 20));
+
         $form = new Form;
         $form->addSelect('court', 'Court:', [1 => 'Court 1', 2 => 'Court 2'])->setRequired('Please select a court.');
-        $form->addText('date', 'Date:')->setRequired('Please select a date.')
+        $form->addDate('date', 'Date:')
         ->setRequired('Please select a date.')
-        ->setRequired('Please select a date.')
-        ->setHtmlType('date')
         ->setHtmlAttribute('min', date('Y-m-d'));
-        $form->addText('time', 'Time (hour):')->setRequired('Please select a start time.')
-             ->addRule($form::INTEGER, 'Time must be a number.');
-        $form->addText('end_time','End Time:')->setRequired('Please select an end time.')
-             ->addRule($form::INTEGER, 'End time must be a number.');
+        $form->addSelect('time', 'Time (hour):',$timeOptionsStart)
+            ->setRequired('Please select a start time.')
+            ->addRule($form::INTEGER, 'Time must be a number.');
+        $form->addSelect('end_time','End Time:', $timeOptionsEnd)
+        ->setRequired('Please select an end time.')
+        ->addRule($form::INTEGER, 'Time must be a number.');
        
         $form->addSubmit('reserve', 'Reserve');
         $form->onSuccess[] = [$this, 'reservationFormSucceeded'];
@@ -74,14 +77,33 @@ final class ReservationPresenter extends BasePresenter
             $this->redirect('Sign:in');
         }
 
-        if (!$this->reservationManager->canReserve($userId, $values->date, $values->time, $values->end_time)) {
+
+        if ($values->end_time <= $values->time) {
+            $this->flashMessage('End time must be at least +1 hour from start time.', 'error');
+            return;
+        }
+        $formattedDate = $values->date instanceof \DateTimeImmutable 
+            ? $values->date->format('Y-m-d') 
+            : $values->date;
+
+        if (!$this->reservationManager->canReserve(
+    $userId, 
+    $formattedDate, 
+    $values->time, 
+    $values->end_time)) {
             $this->flashMessage('Reservation failed: time slot unavailable or limit exceeded.', 'error');
             return;
         }
 
-        $this->reservationManager->addReservation($userId, $values->court,  $values->date, $values->time, $values->end_time);
-        $this->flashMessage('Reservation successful!', 'success');
-        $this->redirect('home:default');
+    $this->reservationManager->addReservation(
+        userId: $userId,
+        court: $values->court,
+        date: $values->date->format('Y-m-d'), // Převod na string
+        time: $values->time,
+        end_time: $values->end_time
+    );
+        $this->flashMessage(' Reservation successful!', 'success');
+        $this->redirect('reservation:default');
     }
 
     public function createComponentAdminSettingsForm(): Form
@@ -106,4 +128,6 @@ final class ReservationPresenter extends BasePresenter
         $this->flashMessage('Settings updated successfully.', 'success');
         $this->redirect('this');
     }
+
+
 }

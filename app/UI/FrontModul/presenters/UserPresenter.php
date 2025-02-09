@@ -63,14 +63,15 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             ->setRequired('Please enter a Surname.');
         $form->addText('username', 'Username:')
             ->setRequired('Please enter a username.');
-        $form->addText('email', 'Email:')
+        $form->addEmail('email', 'Email:')
             ->setRequired('Please enter an email address.');
         $form->addPassword('password', 'Password:')
             ->setRequired('Please enter a password.');
         $form->addSelect('role', 'Role:', ['admin' => 'Admin', 'member' => 'Member'])
             ->setRequired('Please select a role.');
-        $form->addText('color', 'Color:')
-             ->setRequired('Please select a color.');
+        $form->addColor('color', 'Color:')
+            ->setRequired('Please select a color.')
+            ->setDefaultValue('#3C8ED7');;
                 
         $form->addSubmit('save', 'Save');
         $form->onSuccess[] = [$this, 'addUserFormSucceeded'];
@@ -125,6 +126,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
      {
         $this->userFacade->createUser($data);
         $this->flashMessage('User created successfully.', 'success');
+        $this->redirect('User:default');
      }
         
     
