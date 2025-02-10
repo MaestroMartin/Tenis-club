@@ -94,7 +94,7 @@ class ReservationManager
         }
 
         //  Pokud neexistuje konflikt a uživatel nepřekročil limit, rezervace je možná¨
-        $this->presenter->flashMessage('Reservation successful!', 'success');
+        
         return true;
         
     }   
