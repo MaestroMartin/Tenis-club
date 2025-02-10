@@ -56,16 +56,16 @@ class UserFacade
 
    public function updateUser(int $userId, stdClass $values,$currentUser): void
 {
-    // 1️⃣ Načtení aktuálních údajů uživatele
+    
     $user = $this->database->table('users')->get($userId);
     if (!$user) {
         throw new \Exception("Uživatel nenalezen.");
     }
 
-    // 2️⃣ Připravení dat pro aktualizaci
+    
     $updateData = [];
 
-    // 🛠 Aktualizace jen pokud byla hodnota zadána
+    
     if (!empty($values->username)) {
         $updateData['username'] = $values->username;
     }
@@ -78,12 +78,10 @@ class UserFacade
         $updateData['password'] = $this->passwords->hash($values->password);
     }
 
-    // 🛠 Role lze měnit jen pokud je přihlášený admin
     if (!empty($values->role) && $currentUser->isInRole('admin')) {
         $updateData['role'] = $values->role;
     }
 
-    // 3️⃣ Pokud jsou nějaké změny, aktualizujeme
     if (!empty($updateData)) {
         $this->database->table('users')->where('id', $userId)->update($updateData);
     }

@@ -1,5 +1,10 @@
 {block content}
-        <h1>Add New User</h1>
+    {foreach $flashes as $flash}
+        <div class="alert alert-{$flash->type}">
+            {$flash->message}
+        </div>
+    {/foreach}
+    <h1>Add New User</h1>
     {form addForm}
 
         <div class="form-group">
@@ -29,6 +34,7 @@
         <div class="form-group">
             {input color}
             {label color /}
+            <small>When you choose for member/admin Color please push enter</small>
         </div>
         <button type="submit" class="btn btn-success">Save</button>
     {/form}

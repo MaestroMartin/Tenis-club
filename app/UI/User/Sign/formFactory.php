@@ -29,20 +29,22 @@ class FormFactory
         
         $form = $this->formFactory->create();
 
-        $form->getElementPrototype()->setAttribute('autocomplete','email' );
-
+        $form->getElementPrototype()->setAttribute('autocomplete', 'email');
+    
         $form->addEmail('email', 'Váš E-mail:')
-            ->setRequired('Prosím vyplňte svůj E-mail:.');
-        
+            ->setRequired('Prosím vyplňte svůj E-mail.')
+            ->addRule($form::EMAIL, 'Zadejte platný e-mail.');
+    
         $form->addPassword('password', 'Heslo:')
-            ->setRequired('Prosím vyplňte své heslo.');
-        
+            ->setRequired('Prosím vyplňte své heslo.')
+            ->addRule($form::MIN_LENGTH, 'Heslo musí mít alespoň 8 znaků.', 4);
+    
         $form->addSubmit('send', 'Přihlásit');
-        
+    
         $form->onSuccess[] = [$this, 'onSuccess'];
-        
+    
         Debugger::barDump($form, 'Vytvořený formulář');
-        
+    
         return $form;
     }
 

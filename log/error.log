@@ -1,0 +1,1 @@
+[2025-02-10 18-43-07] PHP Warning: The use statement with non-compound name 'Nette' has no effect in /mnt/c/Users/pelma/Desktop/Tenis-club/app/UI/model/MyAuthenticator.php:5  @  CLI (PID: 2599): www/index.php reservations:cleanup 

@@ -14,11 +14,6 @@ Trait SecurePresenterTrait
      * 
      */
     public User $user;
-   /**  public function __construct(
-    *    protected User $user,
-     *   
-   * ){}
-    */
     
     public function startup(): void
     {

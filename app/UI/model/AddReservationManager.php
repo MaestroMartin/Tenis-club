@@ -20,7 +20,7 @@ class AddReservationManager
 
     public function getAllReservations(): array
     {
-        return $this->database->table('reservations')->fetchAll();
+        return $this->database->table('reservations')->order('date')->fetchAll();
     }
 
     public function deleteReservation(int $reservationId): void
