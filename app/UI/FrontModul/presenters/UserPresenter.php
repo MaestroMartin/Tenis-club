@@ -107,21 +107,35 @@ final class UserPresenter extends Nette\Application\UI\Presenter
 
 
     public function editUserFormSucceeded(Form $form, \stdClass $values): void
-    {
-        $userId = $this->getParameter('id');
-        bdump($userId, 'userId');
-        if ($userId) {
-            $this->userFacade->updateUser($userId, $values, $this->getUser());
-            $this->flashMessage('User updated successfully.', 'success');
-            $this->redirect('User:default');
-        } else {
-            $this->flashMessage('User not found.', 'error');
-            $this->redirect('User:default');
+{
+    $userId = $this->getParameter('id');
+    bdump($userId, 'userId');
 
-            
-        }
-
+    if (!$userId) {
+        $this->flashMessage('User not found.', 'error');
+        $this->redirect('User:default');
+        return;
     }
+
+    // Zkontrolujeme, zda username již existuje u jiného uživatele
+    $existingUser = $this->database->table('users')
+        ->where('username', $values->username)
+        ->where('id != ?', $userId) // Vyloučíme aktuálního uživatele
+        ->fetch();
+
+    if ($existingUser) {
+        $this->flashMessage('This username is already taken. Please choose another one.', 'error');
+        return; // Neprovedeme aktualizaci
+    }
+
+    // Pokud je username unikátní, pokračujeme v aktualizaci
+    $this->userFacade->updateUser($userId, $values, $this->getUser());
+    $this->flashMessage('User updated successfully.', 'success');
+    $this->redirect('User:default');
+}
+
+
+    
     public function addUserFormSucceeded(Form $form, \stdClass $data): void
      {
         $this->userFacade->createUser($data);

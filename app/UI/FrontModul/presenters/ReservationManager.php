@@ -5,6 +5,7 @@ namespace App\UI\FrontModul\Presenters;
 use Nette\Application\Responses\RedirectResponse;
 use Nette\Database\Explorer;
 use Nette\SmartObject;
+use App\UI\FrontModul\Presenters\ReservationPresenter;
 
 use Nette\Database\Table\ActiveRow;
 
@@ -14,7 +15,7 @@ class ReservationManager
 
     private Explorer $database;
 
-    public function __construct(Explorer $database,)
+    public function __construct(Explorer $database, )
     {
         $this->database = $database;
         
@@ -56,23 +57,20 @@ class ReservationManager
 
     public function canReserve(int $userId, string $date, int $time, int $end_time): bool
     {
-        // Převod datumu na formátovaný řetězec
+    
         if ($date instanceof \DateTimeImmutable) {
             $date = $date->format('Y-m-d');
         }
 
-        // Výpočet začátku a konce aktuálního týdne (pondělí - neděle)
         $startOfWeek = (new \DateTimeImmutable('monday this week'))->format('Y-m-d');
         $endOfWeek = (new \DateTimeImmutable('sunday this week'))->format('Y-m-d');
 
-        // Počet rezervací uživatele za aktuální týden
         $weeklyReservations = $this->database->table('reservations')
             ->where('user_id', $userId)
             ->where('date >= ?', $startOfWeek)
             ->where('date <= ?', $endOfWeek)
             ->count();
 
-        // Získání maximálního limitu rezervací na týden
         $weeklyLimit = $this->getWeeklyLimit();
 
         // Kontrola, zda již existuje stejná rezervace
@@ -83,18 +81,16 @@ class ReservationManager
             ->count();
 
         if ($weeklyReservations >= $weeklyLimit) {
-            $this->presenter->flashMessage(" You have reached the weekly reservation limit ($weeklyLimit).", 'error');
+            
             return false;
         }
 
-        //  Kontrola, zda v databázi již neexistuje stejná rezervace
         if ($conflict > 0) {
-            $this->presenter->flashMessage(" This time slot is already booked. Please choose another time.", 'error');
+            
+            
             return false;
         }
 
-        //  Pokud neexistuje konflikt a uživatel nepřekročil limit, rezervace je možná¨
-        
         return true;
         
     }   

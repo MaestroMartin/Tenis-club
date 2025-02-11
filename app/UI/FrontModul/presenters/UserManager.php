@@ -43,6 +43,7 @@ class UserManager
 
     public function updateUser(int $userId, string $username, string $email, string $password, string $role): void
     {
+        
         $this->database->table('users')->where('id', $userId)->update([
             'username' => $username,
             'email' => $email,

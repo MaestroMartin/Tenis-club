@@ -56,4 +56,5 @@ final class AdminPresenter extends Nette\Application\UI\Presenter
         $this->flashMessage('Settings updated successfully.', 'success');
         $this->redirect('this');
     }
+   
 }

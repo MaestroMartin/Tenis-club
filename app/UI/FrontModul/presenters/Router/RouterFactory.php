@@ -25,6 +25,7 @@ final class RouterFactory
 		$router->addRoute('User/addNew', 'User:add');
 		$router->addRoute('Admin', 'admin:default');
 		$router->addRoute('Admin/setting', 'admin:settings');
+	
 		
 
 		

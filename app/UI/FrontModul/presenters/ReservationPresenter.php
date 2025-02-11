@@ -54,14 +54,13 @@ final class ReservationPresenter extends BasePresenter
         $form = new Form;
         $form->addSelect('court', 'Court:', [1 => 'Court 1', 2 => 'Court 2'])->setRequired('Please select a court.');
         $form->addDate('date', 'Date:')
-        ->setRequired('Please select a date.')
-        ->setHtmlAttribute('min', date('Y-m-d'));
+            ->setRequired('Please select a date.')
+            ->setHtmlAttribute('min', date('Y-m-d'));
         $form->addSelect('time', 'Time (hour):',$timeOptionsStart)
-            ->setRequired('Please select a start time.')
-            ->addRule($form::INTEGER, 'Time must be a number.');
+            ->setRequired('Please select a start time.');
         $form->addSelect('end_time','End Time:', $timeOptionsEnd)
-        ->setRequired('Please select an end time.')
-        ->addRule($form::INTEGER, 'Time must be a number.');
+            ->setRequired('Please select an end time.');
+            
        
         $form->addSubmit('reserve', 'Reserve');
         $form->onSuccess[] = [$this, 'reservationFormSucceeded'];
@@ -90,7 +89,7 @@ final class ReservationPresenter extends BasePresenter
     $formattedDate, 
     $values->time, 
     $values->end_time)) {
-            $this->flashMessage('Reservation failed: time slot unavailable or limit exceeded.', 'error');
+            
             return;
         }
 
