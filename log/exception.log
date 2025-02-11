@@ -1,0 +1,1 @@
+[2025-02-10 18-43-07] Nette\DI\ServiceCreationException: Service (www\scripts\delete_old_reservations::__construct()): Class 'www\scripts\delete_old_reservations' not found. in /mnt/c/Users/pelma/Desktop/Tenis-club/vendor/nette/di/src/DI/Resolver.php:145  @  CLI (PID: 2599): www/index.php reservations:cleanup  @@  exception--2025-02-10--18-43--c65f76286d.html
