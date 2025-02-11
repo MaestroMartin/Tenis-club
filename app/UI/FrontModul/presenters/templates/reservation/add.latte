@@ -2,6 +2,7 @@
     <h2>Make a Reservation</h2>
         {if $user->isallowed('reservation', 'add')}
             {control reservationForm}
+            <p>if you get back on add Reservation please change your time or court, please look on reservation, and then choose your Reservation. thank you  </p>
         {/if}
     <style>
     h2 {
@@ -41,6 +42,19 @@
         cursor: pointer;
         font-size: 16px;
     }
+    p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;s
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 15px solid #007BFF;
+    border-radius: 4px;
+    margin-left: 400px;
+    margin-right:250px;
+    
+}
 
     button:hover, input[type="submit"]:hover {
         background-color: #45a049;

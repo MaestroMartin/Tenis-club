@@ -20,7 +20,7 @@
                     <td>{$u->email}</td>
                     <td>{$u->role}</td>
                     <td>
-                    {if $user->isLoggedIn() && $user->getId() === $u->id or $user->isInRole('admin')}
+                    {if $user->isInRole('admin')}
                         <a n:href="edit $u->id" class="btn btn-primary">Edit</a>
                     {/if}
 
